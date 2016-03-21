@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  Feeder
 //
 //  Created by Jason Andrae on 3/13/16.
@@ -8,11 +8,19 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
+    // MARK: Properties
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var passTextField: UITextField!
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // Set up view controller to be own text field delegate
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
