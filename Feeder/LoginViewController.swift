@@ -14,13 +14,38 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
     
+    var login: Login?
+    var username: String?
+    var password: String?
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        // Set up view controller to be own text field delegate
+        // Set up view controller to be own text field delegates
+        nameTextField.delegate = self
+        passTextField.delegate = self
         
-        
+    }
+    
+    // MARK: UITextFieldDelegate
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder();
+        if textField == nameTextField {
+            passTextField.becomeFirstResponder()
+        }
+        return true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        switch textField {
+            case nameTextField:
+                username = textField.text
+            case passTextField:
+                password = textField.text
+            default:
+                print("something has gone horribly wrong")
+        }
     }
 
     override func didReceiveMemoryWarning() {
