@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9612ACAB1CA0A1B100E135C0 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9612ACAA1CA0A1B100E135C0 /* WelcomeVC.swift */; };
+		9612ACAD1CA0C7A500E135C0 /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9612ACAC1CA0C7A500E135C0 /* CreateAccountVC.swift */; };
 		963298301C96348A00A8E2A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9632982F1C96348A00A8E2A1 /* AppDelegate.swift */; };
 		963298321C96348A00A8E2A1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963298311C96348A00A8E2A1 /* LoginViewController.swift */; };
 		963298351C96348A00A8E2A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 963298331C96348A00A8E2A1 /* Main.storyboard */; };
@@ -27,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9612ACAA1CA0A1B100E135C0 /* WelcomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
+		9612ACAC1CA0C7A500E135C0 /* CreateAccountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
 		9632982C1C96348A00A8E2A1 /* Feeder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Feeder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9632982F1C96348A00A8E2A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		963298311C96348A00A8E2A1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +90,8 @@
 				963298361C96348A00A8E2A1 /* Assets.xcassets */,
 				963298381C96348A00A8E2A1 /* LaunchScreen.storyboard */,
 				9632983B1C96348A00A8E2A1 /* Info.plist */,
+				9612ACAA1CA0A1B100E135C0 /* WelcomeVC.swift */,
+				9612ACAC1CA0C7A500E135C0 /* CreateAccountVC.swift */,
 			);
 			path = Feeder;
 			sourceTree = "<group>";
@@ -203,6 +209,8 @@
 				963298501C96EDC800A8E2A1 /* Login.swift in Sources */,
 				963298321C96348A00A8E2A1 /* LoginViewController.swift in Sources */,
 				963298301C96348A00A8E2A1 /* AppDelegate.swift in Sources */,
+				9612ACAD1CA0C7A500E135C0 /* CreateAccountVC.swift in Sources */,
+				9612ACAB1CA0A1B100E135C0 /* WelcomeVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
