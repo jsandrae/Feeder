@@ -8,15 +8,15 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDelegate {
 
     // MARK: Properties
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
     
     var login: Login?
-    var username: String?
-    var password: String?
+    var givenUser: String?
+    var givenPass: String?
     
     override func viewDidLoad() {
         
@@ -34,8 +34,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         switch textField {
         case nameTextField:
             passTextField.becomeFirstResponder()
-        case passTextField:
-            print(password)
         default:
             print("something has gone wrong")
         }
@@ -45,9 +43,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(textField: UITextField) {
         switch textField {
             case nameTextField:
-                username = textField.text
+                givenUser = textField.text
             case passTextField:
-                password = textField.text
+                givenPass = textField.text
+                authenticate();
             default:
                 print("something has gone horribly wrong")
         }
@@ -57,7 +56,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: Navigation
+    func authenticate(){
+        let username: String = nameTextField.text!
+        let password: String = passTextField.text!
+        
+        if ( username.isEmpty || password.isEmpty ) {
+            
+            
+        } else {
+            
+            var post:NSString = "username=\(username)&password=\(password)"
+            
+            
+        }
+        
+        
+    }
 
-
+    // MARK: NSCoding
+    func loadLogin() -> Login? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(Login.ArchiveURL.path!) as? Login
+    }
 }
 

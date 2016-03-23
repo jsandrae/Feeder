@@ -15,17 +15,22 @@ class WelcomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // Try to load a saved login
+        let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+        let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
+        // No login present, goto login view
+        if (isLoggedIn != 1) {
+            self.performSegueWithIdentifier("gotologin", sender: self)
+        } else {
+            self.usernameLabel.text = prefs.valueForKey("USERNAME") as? String
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        self.performSegueWithIdentifier("gotoLogin", sender: self)
     }
     
     // MARK: Actions
@@ -43,5 +48,10 @@ class WelcomeVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: NSCoding
+    func loadLogin() -> Login? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(Login.ArchiveURL.path!) as? Login
+    }
 
 }
