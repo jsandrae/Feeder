@@ -21,7 +21,7 @@ class WelcomeVC: UIViewController {
         let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
         // No login present, goto login view
         if (isLoggedIn != 1) {
-            self.performSegueWithIdentifier("gotologin", sender: self)
+            self.performSegueWithIdentifier("gotoLogin", sender: self)
         } else {
             self.usernameLabel.text = prefs.valueForKey("USERNAME") as? String
         }

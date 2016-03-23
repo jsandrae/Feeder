@@ -66,9 +66,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             
             
         } else {
-            
-            var post:NSString = "username=\(username)&password=\(password)"
-            
+        
             
         }
         

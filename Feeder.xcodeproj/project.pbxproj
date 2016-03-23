@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9612ACAB1CA0A1B100E135C0 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9612ACAA1CA0A1B100E135C0 /* WelcomeVC.swift */; };
 		9612ACAD1CA0C7A500E135C0 /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9612ACAC1CA0C7A500E135C0 /* CreateAccountVC.swift */; };
+		962AFDBD1CA244080013942B /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 962AFDBC1CA244080013942B /* KeychainWrapper.m */; };
 		963298301C96348A00A8E2A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9632982F1C96348A00A8E2A1 /* AppDelegate.swift */; };
 		963298321C96348A00A8E2A1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963298311C96348A00A8E2A1 /* LoginViewController.swift */; };
 		963298351C96348A00A8E2A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 963298331C96348A00A8E2A1 /* Main.storyboard */; };
@@ -31,6 +32,9 @@
 /* Begin PBXFileReference section */
 		9612ACAA1CA0A1B100E135C0 /* WelcomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		9612ACAC1CA0C7A500E135C0 /* CreateAccountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
+		962AFDBA1CA244080013942B /* Feeder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Feeder-Bridging-Header.h"; sourceTree = "<group>"; };
+		962AFDBB1CA244080013942B /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
+		962AFDBC1CA244080013942B /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
 		9632982C1C96348A00A8E2A1 /* Feeder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Feeder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9632982F1C96348A00A8E2A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		963298311C96348A00A8E2A1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -87,11 +91,14 @@
 				963298311C96348A00A8E2A1 /* LoginViewController.swift */,
 				963298331C96348A00A8E2A1 /* Main.storyboard */,
 				9632984F1C96EDC800A8E2A1 /* Login.swift */,
+				962AFDBB1CA244080013942B /* KeychainWrapper.h */,
+				962AFDBC1CA244080013942B /* KeychainWrapper.m */,
 				963298361C96348A00A8E2A1 /* Assets.xcassets */,
 				963298381C96348A00A8E2A1 /* LaunchScreen.storyboard */,
 				9632983B1C96348A00A8E2A1 /* Info.plist */,
 				9612ACAA1CA0A1B100E135C0 /* WelcomeVC.swift */,
 				9612ACAC1CA0C7A500E135C0 /* CreateAccountVC.swift */,
+				962AFDBA1CA244080013942B /* Feeder-Bridging-Header.h */,
 			);
 			path = Feeder;
 			sourceTree = "<group>";
@@ -209,6 +216,7 @@
 				963298501C96EDC800A8E2A1 /* Login.swift in Sources */,
 				963298321C96348A00A8E2A1 /* LoginViewController.swift in Sources */,
 				963298301C96348A00A8E2A1 /* AppDelegate.swift in Sources */,
+				962AFDBD1CA244080013942B /* KeychainWrapper.m in Sources */,
 				9612ACAD1CA0C7A500E135C0 /* CreateAccountVC.swift in Sources */,
 				9612ACAB1CA0A1B100E135C0 /* WelcomeVC.swift in Sources */,
 			);
@@ -339,10 +347,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Feeder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SeniorProject.Feeder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Feeder/Feeder-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -350,10 +361,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Feeder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SeniorProject.Feeder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Feeder/Feeder-Bridging-Header.h";
 			};
 			name = Release;
 		};
