@@ -14,6 +14,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
     
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var createInfoLabel: UILabel!
+    
+    let createLoginButtonTag = 0
+    let loginButtonTag = 1
+    
     var login: Login?
     var givenUser: String?
     var givenPass: String?
@@ -21,6 +27,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        // 1.
+        let hasLogin = NSUserDefaults.standardUserDefaults().boolForKey("hasLoginKey")
+        
+        // 2.
+        if hasLogin {
+            loginButton.setTitle("Login", forState: UIControlState.Normal)
+            loginButton.tag = loginButtonTag
+            createInfoLabel.hidden = true
+        } else {
+            loginButton.setTitle("Create", forState: UIControlState.Normal)
+            loginButton.tag = createLoginButtonTag
+            createInfoLabel.hidden = false
+        }
+        
+        // 3.
+        if let storedUsername = NSUserDefaults.standardUserDefaults().valueForKey("username") as? String {
+            nameTextField.text = storedUsername as String
+        }
         
         // Set up view controller to be own text field delegates
         nameTextField.delegate = self

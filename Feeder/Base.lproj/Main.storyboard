@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -28,7 +29,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="198" height="33"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
                                                     <rect key="frame" x="0.0" y="0.0" width="198" height="33"/>
                                                 </variation>
                                             </label>
@@ -36,13 +37,13 @@
                                                 <rect key="frame" x="0.0" y="33" width="198" height="33"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
                                                     <rect key="frame" x="0.0" y="33" width="198" height="33"/>
                                                 </variation>
                                             </label>
                                         </subviews>
-                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="21" y="0.0" width="198" height="65"/>
+                                        <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="2" y="0.0" width="198" height="65"/>
                                         </variation>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="fwb-bP-zLL">
@@ -53,7 +54,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
                                                     <rect key="frame" x="0.0" y="0.0" width="202" height="21"/>
                                                 </variation>
                                             </label>
@@ -62,78 +63,96 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="47" y="21" width="107" height="21"/>
+                                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                    <rect key="frame" x="48" y="21" width="107" height="21"/>
                                                 </variation>
                                             </label>
                                         </subviews>
-                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="19" y="65" width="202" height="41"/>
+                                        <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="65" width="202" height="41"/>
                                         </variation>
                                     </stackView>
                                 </subviews>
-                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="41" y="104" width="238" height="106"/>
+                                <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="54" y="57" width="202" height="106"/>
                                 </variation>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXh-Sy-thn">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="RXh-Sy-thn" secondAttribute="height" multiplier="166:61" id="Gsg-Cs-2IC"/>
+                                </constraints>
+                                <state key="normal" title="I Need an Account" backgroundImage="Button">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Gsg-Cs-2IC"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="77" y="343" width="166" height="61"/>
+                                    <mask key="constraints">
+                                        <include reference="Gsg-Cs-2IC"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="loginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FKf-Jb-37d"/>
+                                </connections>
+                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="76y-7n-6Wh">
                                 <rect key="frame" x="46" y="235" width="228" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
-                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="46" y="955" width="228" height="30"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" enablesReturnKeyAutomatically="YES"/>
+                                <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="54" y="183" width="228" height="30"/>
                                 </variation>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eg5-mp-GFV">
                                 <rect key="frame" x="46" y="273" width="228" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
-                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="46" y="993" width="228" height="30"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="46" y="225" width="228" height="30"/>
                                 </variation>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXh-Sy-thn">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="I Need an Account"/>
-                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="P8a-VZ-qw8">
+                                <rect key="frame" x="46" y="273" width="228" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="46" y="271" width="228" height="30"/>
+                                </variation>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="feeder url" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Ig5-06-uPy">
+                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                                <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="46" y="314" width="228" height="30"/>
+                                </variation>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="eg5-mp-GFV" firstAttribute="width" secondItem="76y-7n-6Wh" secondAttribute="width" id="2vA-bq-fMc"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="RXh-Sy-thn" secondAttribute="bottom" constant="40" id="8xW-dk-o48"/>
-                            <constraint firstItem="RXh-Sy-thn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ecc-Ev-ST4"/>
-                            <constraint firstItem="ouG-Np-GdE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Hjm-Fa-3MX"/>
-                            <constraint firstItem="ouG-Np-GdE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="84" id="JXA-Tc-Ou8"/>
-                            <constraint firstItem="76y-7n-6Wh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LMY-B3-wRb"/>
-                            <constraint firstItem="eg5-mp-GFV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aAf-fT-cqE"/>
-                            <constraint firstItem="76y-7n-6Wh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="auq-7a-STO"/>
-                            <constraint firstItem="ouG-Np-GdE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="25" id="j7z-XX-sda"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="76y-7n-6Wh" secondAttribute="trailing" constant="30" id="kZd-ep-eL8"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ouG-Np-GdE" secondAttribute="trailing" constant="25" id="nj1-px-OM7"/>
-                            <constraint firstItem="eg5-mp-GFV" firstAttribute="top" secondItem="76y-7n-6Wh" secondAttribute="bottom" constant="8" id="qnN-Kd-a3J"/>
-                            <constraint firstItem="76y-7n-6Wh" firstAttribute="top" secondItem="ouG-Np-GdE" secondAttribute="bottom" constant="25" id="wZz-7e-rUj"/>
-                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="RXh-Sy-thn"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="Ecc-Ev-ST4"/>
-                                <exclude reference="8xW-dk-o48"/>
+                                <exclude reference="P8a-VZ-qw8"/>
+                                <exclude reference="Ig5-06-uPy"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="RXh-Sy-thn"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="Ecc-Ev-ST4"/>
-                                <include reference="8xW-dk-o48"/>
+                                <include reference="P8a-VZ-qw8"/>
+                                <include reference="Ig5-06-uPy"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="v1x-Sq-3OK"/>
                     <connections>
+                        <outlet property="createInfoLabel" destination="f7l-ZG-C12" id="Sl6-El-zI1"/>
+                        <outlet property="loginButton" destination="RXh-Sy-thn" id="gjd-PW-fG4"/>
                         <outlet property="nameTextField" destination="76y-7n-6Wh" id="NLi-kr-1kc"/>
                         <outlet property="passTextField" destination="eg5-mp-GFV" id="K1i-cY-my2"/>
                     </connections>
@@ -318,14 +337,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="P8a-VZ-qw8">
-                                <rect key="frame" x="46" y="273" width="228" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
-                                <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="46" y="311" width="228" height="30"/>
-                                </variation>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fjW-fS-ae3">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Have an account? Login now!"/>
@@ -352,7 +363,6 @@
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="P8a-VZ-qw8"/>
                                 <exclude reference="fjW-fS-ae3"/>
                             </mask>
                             <mask key="constraints">
@@ -362,7 +372,6 @@
                         </variation>
                         <variation key="heightClass=compact-widthClass=compact">
                             <mask key="subviews">
-                                <include reference="P8a-VZ-qw8"/>
                                 <include reference="fjW-fS-ae3"/>
                             </mask>
                             <mask key="constraints">
@@ -383,4 +392,7 @@
             <point key="canvasLocation" x="3111" y="297"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Button" width="131" height="66"/>
+    </resources>
 </document>
