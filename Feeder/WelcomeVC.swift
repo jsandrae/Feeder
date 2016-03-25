@@ -16,7 +16,9 @@ class WelcomeVC: UIViewController {
     
     var username: String?
     var isAuthenticated = false
+    var didReturnFromBackground = false
     
+    // MARK: Loading Navigation
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,6 +35,35 @@ class WelcomeVC: UIViewController {
             self.usernameLabel.text = prefs.valueForKey("USERNAME") as? String
         }
         
+    }
+    
+    func appWillResignActive(notification : NSNotification) {
+        
+        view.alpha = 0
+        isAuthenticated = false
+        didReturnFromBackground = true
+    }
+    
+    func appDidBecomeActive(notification : NSNotification) {
+        
+        if didReturnFromBackground {
+            self.showLoginView()
+        }
+    }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        super.viewDidAppear(false)
+        self.showLoginView()
+    }
+    
+    func showLoginView() {
+        
+        if !isAuthenticated {
+            
+            self.performSegueWithIdentifier("gotoLogin", sender: self)
+        }
     }
 
     override func didReceiveMemoryWarning() {
