@@ -151,10 +151,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="v1x-Sq-3OK"/>
                     <connections>
+                        <outlet property="confirmTextField" destination="P8a-VZ-qw8" id="nFB-bO-S9A"/>
                         <outlet property="createInfoLabel" destination="f7l-ZG-C12" id="Sl6-El-zI1"/>
                         <outlet property="loginButton" destination="RXh-Sy-thn" id="gjd-PW-fG4"/>
                         <outlet property="nameTextField" destination="76y-7n-6Wh" id="NLi-kr-1kc"/>
                         <outlet property="passTextField" destination="eg5-mp-GFV" id="K1i-cY-my2"/>
+                        <outlet property="urlTextField" destination="Ig5-06-uPy" id="Dud-Oc-WN1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
