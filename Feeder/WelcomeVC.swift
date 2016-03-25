@@ -7,14 +7,21 @@
 //
 
 import UIKit
+import CoreData
 
 class WelcomeVC: UIViewController {
 
     // MARK: Properties
     @IBOutlet weak var usernameLabel: UILabel!
     
+    var username: String?
+    var isAuthenticated = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Hide view until return from login view
+        view.alpha = 0
         
         // Try to load a saved login
         let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()

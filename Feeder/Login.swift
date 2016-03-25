@@ -12,7 +12,6 @@ class Login: NSObject, NSCoding {
     
     // MARK: Properties
     var username: String
-    var password: String
     var url: String
     
     // MARK: Archiving Paths
@@ -22,20 +21,18 @@ class Login: NSObject, NSCoding {
     // MARK: Types
     struct PropertyKey {
         static let userKey = "username"
-        static let passKey = "password"
         static let urlKey = "url"
     }
     
     // MARK: Initialization
-    init? (username: String, password: String, url: String){
+    init? (username: String, url: String){
         self.username = username
-        self.password = password
         self.url = url
         
         super.init()
         
-        // Should return nil if username or password is an empty string
-        if username.isEmpty || password.isEmpty {
+        // Should return nil if username is an empty string
+        if username.isEmpty {
             return nil
         }
     }
@@ -43,16 +40,14 @@ class Login: NSObject, NSCoding {
     // MARK: NSCoding
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(username, forKey: PropertyKey.userKey)
-        aCoder.encodeObject(password, forKey: PropertyKey.passKey)
         aCoder.encodeObject(url, forKey: PropertyKey.urlKey)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
         let username = aDecoder.decodeObjectForKey(PropertyKey.userKey) as! String
-        let password = aDecoder.decodeObjectForKey(PropertyKey.passKey) as! String
         let url = aDecoder.decodeObjectForKey(PropertyKey.urlKey) as! String
         
         // Must call other initializer
-        self.init(username: username, password: password, url:url)
+        self.init(username: username, url:url)
     }
 }
