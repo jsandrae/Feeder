@@ -61,12 +61,6 @@ class WelcomeVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: Actions
-    // Logout button action
-    @IBAction func logoutTapped(sender: UIButton) {
-        self.performSegueWithIdentifier("gotoLogin", sender: self)
-    }
-    
     /*
     // MARK: - Navigation
 

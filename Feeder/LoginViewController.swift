@@ -134,7 +134,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     @IBAction func loginAction(sender: AnyObject) {
         // if either text field is empty, warn user with alert
         if (nameTextField.text == "" || passTextField.text == "") {
-            let alertView = UIAlertController(title: "Login Problem",
+            let alertView = UIAlertController(title: "Input Problem",
                                               message: "Wrong username or password." as String, preferredStyle:.Alert)
             let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
             alertView.addAction(okAction)
@@ -144,6 +144,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         
         // Find current status of button and perform actions depending on if it's create or login
         if sender.tag == createLoginButtonTag { // If create button
+            
+            // Check for text field errors
+            if (givenPass != givenConfirm) {
+                print("Pass text: %s", passTextField.text)
+                let alertView = UIAlertController(title: "Signup Problem",
+                                                  message: "Passwords do not match" as String, preferredStyle:.Alert)
+                let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
+                alertView.addAction(okAction)
+                self.presentViewController(alertView, animated: true, completion: nil)
+                passTextField.text = ""
+                confirmTextField.text = ""
+                return;
+            } else if (urlTextField.text == "") {
+                let alertView = UIAlertController(title: "Signup Problem",
+                                                  message: "URL Field Empty" as String, preferredStyle:.Alert)
+                let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
+                alertView.addAction(okAction)
+                self.presentViewController(alertView, animated: true, completion: nil)
+                return;
+            }
             
             // If user doesn't have local login key, add username to local status object
             let hasLoginKey = NSUserDefaults.standardUserDefaults().boolForKey("hasLoginKey")
