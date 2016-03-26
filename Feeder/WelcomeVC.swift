@@ -17,6 +17,7 @@ class WelcomeVC: UIViewController {
     var username: String?
     var isAuthenticated = false
     var didReturnFromBackground = false
+    var login: Login?
     
     // MARK: Loading Navigation
     override func viewDidLoad() {
@@ -24,38 +25,46 @@ class WelcomeVC: UIViewController {
         
         // Hide view until return from login view
         view.alpha = 0
-        
-        
     }
     
+    /**
+     * Function for response to user returning to home screen on phone
+     */
     func appWillResignActive(notification : NSNotification) {
-        
         view.alpha = 0
         isAuthenticated = false
         didReturnFromBackground = true
     }
     
+    /**
+     * Function for app regaining focus on phone
+     */
     func appDidBecomeActive(notification : NSNotification) {
-        
         if didReturnFromBackground {
             self.showLoginView()
         }
     }
     
-    
+    /**
+     * Function for when App first loads
+     */
     override func viewDidAppear(animated: Bool) {
-        
         super.viewDidAppear(false)
         self.showLoginView()
     }
     
+    /**
+     * Function for checking for checking authentication
+     */
     func showLoginView() {
-        
         if !isAuthenticated {
             self.performSegueWithIdentifier("gotoLogin", sender: self)
         }
     }
 
+    /**
+     * Function for app to receive signal to reduce memory footprint
+     */
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -70,10 +79,5 @@ class WelcomeVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
-    // MARK: NSCoding
-    func loadLogin() -> Login? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(Login.ArchiveURL.path!) as? Login
-    }
 
 }
