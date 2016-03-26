@@ -110,7 +110,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             givenUser = textField.text
         case passTextField:
             if isAuthenticated {
-                authenticate(textField.text!);
+                //authenticate(textField.text!);
             } else {
                 givenPass = textField.text
             }
@@ -131,7 +131,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     
     // MARK: Actions
     
-    @IBAction func loginAction(sender: UIButton) {
+    @IBAction func loginAction(sender: AnyObject) {
         // if either text field is empty, warn user with alert
         if (nameTextField.text == "" || passTextField.text == "") {
             let alertView = UIAlertController(title: "Login Problem",
@@ -142,29 +142,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             return;
         }
         
-        // Remove keyboards from text fields
-        //nameTextField.resignFirstResponder()
-        //passTextField.resignFirstResponder()
-        
-        // 3.
-        /*if sender.tag == createLoginButtonTag {
+        // Find current status of button and perform actions depending on if it's create or login
+        if sender.tag == createLoginButtonTag { // If create button
             
-            // 4.
+            // If user doesn't have local login key, add username to local status object
             let hasLoginKey = NSUserDefaults.standardUserDefaults().boolForKey("hasLoginKey")
             if hasLoginKey == false {
                 NSUserDefaults.standardUserDefaults().setValue(self.nameTextField.text, forKey: "username")
             }
             
-            // 5.
+            // Store password in keychain for this user
             MyKeychainWrapper.mySetObject(passTextField.text, forKey:kSecValueData)
             MyKeychainWrapper.writeToKeychain()
+            // Change state of login key to true and change button to login for future
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasLoginKey")
             NSUserDefaults.standardUserDefaults().synchronize()
             loginButton.tag = loginButtonTag
             
+            // Dismiss this view
             performSegueWithIdentifier("dismissLogin", sender: self)
-        } else if sender.tag == loginButtonTag {
-            // 6.
+        } else if sender.tag == loginButtonTag { // elseif login button
+            // Compare typed user information to saved password in keychain
             if checkLogin(nameTextField.text!, password: passTextField.text!) {
                 performSegueWithIdentifier("dismissLogin", sender: self)
             } else {
@@ -175,13 +173,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
                 alertView.addAction(okAction)
                 self.presentViewController(alertView, animated: true, completion: nil)
             }
-        }*/
+        }
     }
     
     // MARK: Navigation
     
 
     // MARK: Helper functions
+    
+    // Function to compare username for local login to given, and compare typed password to that saved on keychain
     func checkLogin(username: String, password: String ) -> Bool {
         // Compare entered username and passwords to keychain user and pass
         if password == MyKeychainWrapper.myObjectForKey("v_Data") as? String &&
