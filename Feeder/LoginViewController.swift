@@ -25,16 +25,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     // State of loginButton (Login or Create)
     let createLoginButtonTag = 0
     let loginButtonTag = 1
+    //let passTextFieldTag = 2
+    //let urlTextFieldTag = 3
     
     // Keychain wrapper
     let MyKeychainWrapper = KeychainWrapper()
     
     // Variables
     var login: Login?
-    var givenUser: String?
-    var givenPass: String?
-    var givenConfirm: String?
-    var givenURL: String?
     var isAuthenticated = false
     
     override func viewDidLoad() {
@@ -88,40 +86,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         case nameTextField:
             passTextField.becomeFirstResponder()
         case passTextField:
-            if !isAuthenticated { // If no authentication exists, continue to signup
+            if isAuthenticated {// Go to login
+                performLogin(loginButtonTag)
+            } else {// If no authentication exists, continue to signup
                 confirmTextField.becomeFirstResponder()
             }
         case confirmTextField:
             urlTextField.becomeFirstResponder()
         case urlTextField:
-            print("Signup completed")
+            performLogin(createLoginButtonTag)
         default:
             print("something has gone wrong")
         }
         return true
-    }
-    
-    /**
-     * Function for what happens when text field entry has completed
-     */
-    func textFieldDidEndEditing(textField: UITextField) {
-        switch textField {
-        case nameTextField:
-            givenUser = textField.text
-        case passTextField:
-            if isAuthenticated {
-                //authenticate(textField.text!);
-            } else {
-                givenPass = textField.text
-            }
-        case confirmTextField:
-            givenConfirm = confirmTextField.text
-        case urlTextField:
-            givenURL = urlTextField.text
-            completeSignup()
-        default:
-            print("something has gone horribly wrong")
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -131,7 +108,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     
     // MARK: Actions
     
-    @IBAction func loginAction(sender: AnyObject) {
+    @IBAction func loginAction(sender: UIButton) {
+        nameTextField.resignFirstResponder()
+        passTextField.resignFirstResponder()
+        performLogin(sender.tag)
+    }
+    
+    func performLogin(senderID:Int){
+        
         // if either text field is empty, warn user with alert
         if (nameTextField.text == "" || passTextField.text == "") {
             let alertView = UIAlertController(title: "Input Problem",
@@ -143,11 +127,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         }
         
         // Find current status of button and perform actions depending on if it's create or login
-        if sender.tag == createLoginButtonTag { // If create button
+        if senderID == createLoginButtonTag { // If create button
             
             // Check for text field errors
-            if (givenPass != givenConfirm) {
-                print("Pass text: %s", passTextField.text)
+            if passTextField.text != confirmTextField.text {
                 let alertView = UIAlertController(title: "Signup Problem",
                                                   message: "Passwords do not match" as String, preferredStyle:.Alert)
                 let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
@@ -156,7 +139,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
                 passTextField.text = ""
                 confirmTextField.text = ""
                 return;
-            } else if (urlTextField.text == "") {
+            } else if urlTextField.text == "" {
                 let alertView = UIAlertController(title: "Signup Problem",
                                                   message: "URL Field Empty" as String, preferredStyle:.Alert)
                 let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
@@ -181,7 +164,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             
             // Dismiss this view
             performSegueWithIdentifier("dismissLogin", sender: self)
-        } else if sender.tag == loginButtonTag { // elseif login button
+        } else if senderID == loginButtonTag { // elseif login button
             // Compare typed user information to saved password in keychain
             if checkLogin(nameTextField.text!, password: passTextField.text!) {
                 performSegueWithIdentifier("dismissLogin", sender: self)
@@ -212,21 +195,5 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         }
     }
     
-    func authenticate(password: String){
-        let username: String = nameTextField.text!
-        
-        if ( username.isEmpty || password.isEmpty ) {
-            
-            // test 
-        } else {
-            
-            
-        }
-        
-    }
-    
-    func completeSignup(){
-        
-    }
 }
 
