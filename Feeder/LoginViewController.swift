@@ -44,18 +44,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         // Load account from keychain
         let hasAccount = NSUserDefaults.standardUserDefaults().boolForKey("hasAccountKey")
         
-        // If account exists, load username from account, hide account creation label & text fields, set authenticated to true
+        // If account exists
         if hasAccount {
+            // Change button attributes
             loginButton.setTitle("Login", forState: UIControlState.Normal)
             loginButton.tag = loginButtonTag
-            createInfoLabel.hidden = true
+            // Hide text fields
             confirmTextField.hidden = true
             urlTextField.hidden = true
+            // Change label text
+            createInfoLabel.text = "Log in with username and password"
             isAuthenticated = true
         } else { // Else, change button to create account, unhide account creation label
+            // Change button attributes
             loginButton.setTitle("Create", forState: UIControlState.Normal)
             loginButton.tag = createLoginButtonTag
-            createInfoLabel.hidden = false
+            // Change text field return key
+            passTextField.returnKeyType = UIReturnKeyType.Next
+            // Change label text
+            createInfoLabel.text = "Create username and password. \rSpecify feeder's URL."
         }
         
         // If account loaded, store username in text field as convenience factor
@@ -81,9 +88,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         case nameTextField:
             passTextField.becomeFirstResponder()
         case passTextField:
-            if !isAuthenticated { // If no authentication, user is creating account so go to next
-                
+            if !isAuthenticated { // If no authentication exists, continue to signup
+                confirmTextField.becomeFirstResponder()
             }
+        case confirmTextField:
+            urlTextField.becomeFirstResponder()
+        case urlTextField:
+            print("Signup completed")
         default:
             print("something has gone wrong")
         }
@@ -95,13 +106,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
      */
     func textFieldDidEndEditing(textField: UITextField) {
         switch textField {
-            case nameTextField:
-                givenUser = textField.text
-            case passTextField:
+        case nameTextField:
+            givenUser = textField.text
+        case passTextField:
+            if isAuthenticated {
+                authenticate(textField.text!);
+            } else {
                 givenPass = textField.text
-                authenticate();
-            default:
-                print("something has gone horribly wrong")
+            }
+        case confirmTextField:
+            givenConfirm = confirmTextField.text
+        case urlTextField:
+            givenURL = urlTextField.text
+            completeSignup()
+        default:
+            print("something has gone horribly wrong")
         }
     }
 
@@ -124,11 +143,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         }
         
         // Remove keyboards from text fields
-        nameTextField.resignFirstResponder()
-        passTextField.resignFirstResponder()
+        //nameTextField.resignFirstResponder()
+        //passTextField.resignFirstResponder()
         
         // 3.
-        if sender.tag == createLoginButtonTag {
+        /*if sender.tag == createLoginButtonTag {
             
             // 4.
             let hasLoginKey = NSUserDefaults.standardUserDefaults().boolForKey("hasLoginKey")
@@ -156,24 +175,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
                 alertView.addAction(okAction)
                 self.presentViewController(alertView, animated: true, completion: nil)
             }
-        }
+        }*/
     }
     
     // MARK: Navigation
-    func authenticate(){
-        let username: String = nameTextField.text!
-        let password: String = passTextField.text!
-        
-        if ( username.isEmpty || password.isEmpty ) {
-            
-            
-        } else {
-        
-            
-        }
-        
-        
-    }
+    
 
     // MARK: Helper functions
     func checkLogin(username: String, password: String ) -> Bool {
@@ -184,6 +190,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         } else {
             return false
         }
+    }
+    
+    func authenticate(password: String){
+        let username: String = nameTextField.text!
+        
+        if ( username.isEmpty || password.isEmpty ) {
+            
+            
+        } else {
+            
+            
+        }
+        
+    }
+    
+    func completeSignup(){
+        
     }
 }
 
