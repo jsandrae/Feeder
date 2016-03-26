@@ -197,7 +197,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         
         if ( username.isEmpty || password.isEmpty ) {
             
-            // test for commit
+            // test 
         } else {
             
             
