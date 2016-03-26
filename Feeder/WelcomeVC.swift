@@ -25,15 +25,6 @@ class WelcomeVC: UIViewController {
         // Hide view until return from login view
         view.alpha = 0
         
-        // Try to load a saved login
-        let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-        let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
-        // No login present, goto login view
-        if (isLoggedIn != 1) {
-            self.performSegueWithIdentifier("gotoLogin", sender: self)
-        } else {
-            self.usernameLabel.text = prefs.valueForKey("USERNAME") as? String
-        }
         
     }
     
@@ -61,7 +52,6 @@ class WelcomeVC: UIViewController {
     func showLoginView() {
         
         if !isAuthenticated {
-            
             self.performSegueWithIdentifier("gotoLogin", sender: self)
         }
     }
