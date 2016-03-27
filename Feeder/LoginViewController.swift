@@ -18,6 +18,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     @IBOutlet weak var passTextField: UITextField!
     @IBOutlet weak var confirmTextField: UITextField!
     @IBOutlet weak var urlTextField: UITextField!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     // Button and Labels
     @IBOutlet weak var loginButton: UIButton!
@@ -26,6 +27,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     // State of loginButton (Login or Create)
     let createLoginButtonTag = 0
     let loginButtonTag = 1
+    let settingsButtonTag = 2
     
     // Keychain wrapper
     let MyKeychainWrapper = KeychainWrapper()
@@ -76,6 +78,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     // MARK: UITextFieldDelegate
     /**
      * Function for what happens when enter key is used for a given text field
@@ -100,10 +107,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         }
         return true
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    /**
+     * Function to disable Save button until all text fields have been entered
+     */
+    func textFieldDidBeginEditing(textField: UITextField) {
+        saveButton.enabled = false
     }
     
     // MARK: Actions
@@ -119,7 +128,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         // if either text field is empty, warn user with alert
         if (nameTextField.text == "" || passTextField.text == "") {
             let alertView = UIAlertController(title: "Input Problem",
-                                              message: "Wrong username or password." as String, preferredStyle:.Alert)
+                                              message: "Username or password fields empty." as String, preferredStyle:.Alert)
             let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
             alertView.addAction(okAction)
             self.presentViewController(alertView, animated: true, completion: nil)
@@ -180,11 +189,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         }
     }
     
+    
+    
     // MARK: Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if saveButton === sender {
+            
+        }
+    }
+    
+    @IBAction func cancelButton(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     
 
     // MARK: Helper functions
-    
     // Function to compare username for local login to given, and compare typed password to that saved on keychain
     func checkLogin(username: String, password: String ) -> Bool {
         // Compare entered username and passwords to keychain user and pass

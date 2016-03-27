@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9612ACAB1CA0A1B100E135C0 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9612ACAA1CA0A1B100E135C0 /* WelcomeVC.swift */; };
-		9612ACAD1CA0C7A500E135C0 /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9612ACAC1CA0C7A500E135C0 /* CreateAccountVC.swift */; };
 		962AFDBD1CA244080013942B /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 962AFDBC1CA244080013942B /* KeychainWrapper.m */; };
 		963298301C96348A00A8E2A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9632982F1C96348A00A8E2A1 /* AppDelegate.swift */; };
 		963298321C96348A00A8E2A1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963298311C96348A00A8E2A1 /* LoginViewController.swift */; };
@@ -31,7 +30,6 @@
 
 /* Begin PBXFileReference section */
 		9612ACAA1CA0A1B100E135C0 /* WelcomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
-		9612ACAC1CA0C7A500E135C0 /* CreateAccountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
 		962AFDBA1CA244080013942B /* Feeder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Feeder-Bridging-Header.h"; sourceTree = "<group>"; };
 		962AFDBB1CA244080013942B /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
 		962AFDBC1CA244080013942B /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
@@ -97,7 +95,6 @@
 				963298381C96348A00A8E2A1 /* LaunchScreen.storyboard */,
 				9632983B1C96348A00A8E2A1 /* Info.plist */,
 				9612ACAA1CA0A1B100E135C0 /* WelcomeVC.swift */,
-				9612ACAC1CA0C7A500E135C0 /* CreateAccountVC.swift */,
 				962AFDBA1CA244080013942B /* Feeder-Bridging-Header.h */,
 			);
 			path = Feeder;
@@ -217,7 +214,6 @@
 				963298321C96348A00A8E2A1 /* LoginViewController.swift in Sources */,
 				963298301C96348A00A8E2A1 /* AppDelegate.swift in Sources */,
 				962AFDBD1CA244080013942B /* KeychainWrapper.m in Sources */,
-				9612ACAD1CA0C7A500E135C0 /* CreateAccountVC.swift in Sources */,
 				9612ACAB1CA0A1B100E135C0 /* WelcomeVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
