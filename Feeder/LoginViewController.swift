@@ -46,10 +46,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         super.viewDidLoad()
         
         // Load account from coredata
-        let hasAccount = NSUserDefaults.standardUserDefaults().boolForKey("hasAccountKey")
+        //let hasAccount = NSUserDefaults.standardUserDefaults().boolForKey("hasAccountKey")
         
         // If logging in
-        if hasAccount && segueID == loginA {
+        if isLogin() {
             // Change button attributes
             loginButton.setTitle("Login", forState: UIControlState.Normal)
             loginButton.tag = loginButtonTag
@@ -70,7 +70,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         }
         
         // Change state for settings edit
-        if segueID == settingsA {
+        if isSettings() {
             // Hide button, disable save
             loginButton.setTitle("Update Account", forState: UIControlState.Normal)
             loginButton.enabled = false
@@ -101,14 +101,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
      */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder();
-        if segueID == settingsA{
-            checkValidInputs()
-        }
+        
+        checkValidInputs()
+        
         switch textField {
         case nameTextField:
             passTextField.becomeFirstResponder()
         case passTextField:
-            if isAuthenticated {// Go to login
+            if isLogin() {// Go to login
                 break
             } else {// If no authentication exists, continue to signup
                 confirmTextField.becomeFirstResponder()
@@ -123,14 +123,29 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         return true
     }
     
+    
+    /**
+     * Function to disable Save button until all text fields have been entered
+     */
+    func textFieldDidBeginEditing(textField: UITextField) {
+        loginButton.enabled = false
+    }
+    
     // MARK: Actions
     
+    @IBAction func userTapped(sender: UITapGestureRecognizer) {
+        removeAllResponders()
+        checkValidInputs()
+    }
+
+    
     @IBAction func loginAction(sender: UIButton) {
-        nameTextField.resignFirstResponder()
-        passTextField.resignFirstResponder()
-        confirmTextField.resignFirstResponder()
-        urlTextField.resignFirstResponder()
+        removeAllResponders()
         performLogin(sender.tag)
+    }
+    
+    @IBAction func cancelButton(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     func performLogin(senderID:Int){
@@ -204,15 +219,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     
     // MARK: Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        /*if saveButton === sender {
-            myLogin = Login(username: nameTextField.text!, url: urlTextField.text!)
-        }*/
+        
     }
-    
-    @IBAction func cancelButton(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
 
     // MARK: Helper functions
     // Function to compare username for local login to given, and compare typed password to that saved on keychain
@@ -244,28 +252,30 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             return false;
         }
         // If this is Settings View or Signup View and pass and confirm text fields don't match
-        if (!isAuthenticated && passTextField.text != confirmTextField.text) {
-            if needAlert {
-                let alertView = UIAlertController(title: "Signup Problem",
-                                                  message: "Passwords do not match" as String, preferredStyle:.Alert)
-                let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
-                alertView.addAction(okAction)
-                self.presentViewController(alertView, animated: true, completion: nil)
-                passTextField.text = ""
-                confirmTextField.text = ""
-            }
+        if isSetup() || isSettings() {
+            if passTextField.text != confirmTextField.text {
+                if needAlert {
+                    let alertView = UIAlertController(title: "Signup Problem",
+                                                      message: "Passwords do not match" as String, preferredStyle:.Alert)
+                    let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
+                    alertView.addAction(okAction)
+                    self.presentViewController(alertView, animated: true, completion: nil)
+                    passTextField.text = ""
+                    confirmTextField.text = ""
+                }
+                return false;
             
-            return false;
-        // If URL text field is empty
-        } else if urlTextField.text == "" {
-            if needAlert {
-                let alertView = UIAlertController(title: "Signup Problem",
-                                                  message: "URL Field Empty" as String, preferredStyle:.Alert)
-                let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
-                alertView.addAction(okAction)
-                self.presentViewController(alertView, animated: true, completion: nil)
+                // If URL text field is empty
+            } else if urlTextField.text == "" {
+                if needAlert {
+                    let alertView = UIAlertController(title: "Signup Problem",
+                                                      message: "URL Field Empty" as String, preferredStyle:.Alert)
+                    let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
+                    alertView.addAction(okAction)
+                    self.presentViewController(alertView, animated: true, completion: nil)
+                }
+                return false;
             }
-            return false;
         }
         // All tests have suceeded, everything is valid
         return true
@@ -284,6 +294,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     
     func setDatum(key key:String, datum:String){
         NSUserDefaults.standardUserDefaults().setValue(datum, forKey: key)
+    }
+    
+    func removeAllResponders(){
+        nameTextField.resignFirstResponder()
+        passTextField.resignFirstResponder()
+        confirmTextField.resignFirstResponder()
+        urlTextField.resignFirstResponder()
+    }
+    
+    func isLogin() -> Bool {
+        return NSUserDefaults.standardUserDefaults().boolForKey("hasAccountKey") && segueID == loginA
+    }
+    
+    func isSetup() -> Bool {
+        return !NSUserDefaults.standardUserDefaults().boolForKey("hasAccountKey") && segueID == loginA
+    }
+    
+    func isSettings() -> Bool {
+        return segueID == settingsA
     }
 }
 

@@ -54,8 +54,8 @@
                                 <state key="normal" title="I Need an Account" backgroundImage="Button">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
-                                <state key="disabled">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <state key="disabled" backgroundImage="disabledButton">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -118,6 +118,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="f7l-ZG-C12" firstAttribute="top" secondItem="RXh-Sy-thn" secondAttribute="bottom" constant="12" id="2hL-qk-2Bw"/>
                             <constraint firstItem="czs-Hc-tuy" firstAttribute="top" secondItem="nr1-E0-rmw" secondAttribute="bottom" constant="36" id="CvU-Ow-j9F"/>
@@ -131,6 +132,9 @@
                             <constraint firstItem="czs-Hc-tuy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="wL3-j3-pUW"/>
                             <constraint firstItem="RXh-Sy-thn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="y1E-EJ-LKO"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="eQT-vs-RYJ" appends="YES" id="jlf-e3-Nk3"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Settings" id="v1x-Sq-3OK">
                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="W7r-Sb-cRH">
@@ -151,6 +155,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="t28-43-mvL" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="eQT-vs-RYJ">
+                    <connections>
+                        <action selector="userTapped:" destination="BYZ-38-t0r" id="rnj-jA-CZz"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2431" y="297"/>
         </scene>
@@ -266,6 +275,7 @@
     </scenes>
     <resources>
         <image name="Button" width="131" height="66"/>
+        <image name="disabledButton" width="131" height="66"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Qn4-sF-b1q"/>
