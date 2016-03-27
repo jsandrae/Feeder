@@ -54,6 +54,9 @@
                                 <state key="normal" title="I Need an Account" backgroundImage="Button">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <state key="disabled">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="Gsg-Cs-2IC"/>
@@ -128,11 +131,6 @@
                             <constraint firstItem="czs-Hc-tuy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="wL3-j3-pUW"/>
                             <constraint firstItem="RXh-Sy-thn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="y1E-EJ-LKO"/>
                         </constraints>
-                        <variation key="heightClass=compact-widthClass=compact">
-                            <mask key="subviews">
-                                <exclude reference="RXh-Sy-thn"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Settings" id="v1x-Sq-3OK">
                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="W7r-Sb-cRH">
@@ -140,7 +138,6 @@
                                 <action selector="cancelButton:" destination="BYZ-38-t0r" id="1IW-wr-WoE"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="Sx4-PH-aHb"/>
                     </navigationItem>
                     <connections>
                         <outlet property="confirmTextField" destination="P8a-VZ-qw8" id="nFB-bO-S9A"/>
@@ -148,7 +145,6 @@
                         <outlet property="loginButton" destination="RXh-Sy-thn" id="0tP-V2-9I8"/>
                         <outlet property="nameTextField" destination="76y-7n-6Wh" id="NLi-kr-1kc"/>
                         <outlet property="passTextField" destination="eg5-mp-GFV" id="K1i-cY-my2"/>
-                        <outlet property="saveButton" destination="Sx4-PH-aHb" id="gMQ-yh-v7k"/>
                         <outlet property="urlTextField" destination="Ig5-06-uPy" id="Dud-Oc-WN1"/>
                         <segue destination="t28-43-mvL" kind="unwind" identifier="dismissLogin" unwindAction="unwindSegue:" id="Ajk-hS-vvx"/>
                     </connections>
@@ -235,7 +231,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Settings"/>
                                 <connections>
-                                    <segue destination="FP1-db-6Kf" kind="show" id="3SN-HX-XRM"/>
+                                    <segue destination="FP1-db-6Kf" kind="show" identifier="editSettings" id="3SN-HX-XRM"/>
                                 </connections>
                             </button>
                         </barButtonItem>

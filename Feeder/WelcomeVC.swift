@@ -80,7 +80,14 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+        // Set variable in destination VC which signifies this segue's identifier
+        let segueID = segue.identifier!
+        if segueID == "editSettings" {
+            let nav = segue.destinationViewController as! UINavigationController
+            (nav.topViewController as! LoginViewController).segueID = segueID
+        } else if segueID == "gotoLogin" {
+            (segue.destinationViewController as! LoginViewController).segueID = segueID
+        }
     }
     
     @IBAction func unwindSegue(segue: UIStoryboardSegue){

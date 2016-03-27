@@ -18,7 +18,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     @IBOutlet weak var passTextField: UITextField!
     @IBOutlet weak var confirmTextField: UITextField!
     @IBOutlet weak var urlTextField: UITextField!
-    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     // Button and Labels
     @IBOutlet weak var loginButton: UIButton!
@@ -33,9 +32,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     let MyKeychainWrapper = KeychainWrapper()
     
     // Variables
-    var login: Login?
+    var myLogin: Login?
     var isAuthenticated = false
     var managedObjectContext: NSManagedObjectContext? = nil
+    var segueID: String?
+    
+    // Aliases
+    let settingsA = "editSettings"
+    let loginA = "gotoLogin"
     
     override func viewDidLoad() {
         
@@ -44,8 +48,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         // Load account from coredata
         let hasAccount = NSUserDefaults.standardUserDefaults().boolForKey("hasAccountKey")
         
-        // If account exists
-        if hasAccount {
+        // If logging in
+        if hasAccount && segueID == loginA {
             // Change button attributes
             loginButton.setTitle("Login", forState: UIControlState.Normal)
             loginButton.tag = loginButtonTag
@@ -65,10 +69,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             createInfoLabel.text = "Create username and password. \rSpecify feeder's URL."
         }
         
-        // If account loaded, store username in text field as convenience factor
-        if let storedUsername = NSUserDefaults.standardUserDefaults().valueForKey("username") as? String {
-            nameTextField.text = storedUsername as String
+        // Change state for settings edit
+        if segueID == settingsA {
+            // Hide button, disable save
+            loginButton.setTitle("Update Account", forState: UIControlState.Normal)
+            loginButton.enabled = false
+            // Change informational text
+            createInfoLabel.text = "Edit any field you wish to change."
+            urlTextField.text = getDatum("url")
         }
+        
+        // If account loaded, store username in text field as convenience factor
+        nameTextField.text = getDatum("username")
         
         // Set up view controller to be own text field delegates
         nameTextField.delegate = self
@@ -89,22 +101,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
      */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder();
+        if segueID == settingsA{
+            checkValidInputs()
+        }
         switch textField {
         case nameTextField:
             passTextField.becomeFirstResponder()
-            checkValidInputs()
         case passTextField:
-            checkValidInputs()
             if isAuthenticated {// Go to login
                 break
             } else {// If no authentication exists, continue to signup
                 confirmTextField.becomeFirstResponder()
             }
         case confirmTextField:
-            checkValidInputs()
             urlTextField.becomeFirstResponder()
         case urlTextField:
-            checkValidInputs()
             break
         default:
             print("something has gone wrong")
@@ -112,18 +123,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         return true
     }
     
-    /**
-     * Function to disable Save button until all text fields have been entered
-     */
-    func textFieldDidBeginEditing(textField: UITextField) {
-        saveButton.enabled = false
-    }
-    
     // MARK: Actions
     
     @IBAction func loginAction(sender: UIButton) {
         nameTextField.resignFirstResponder()
         passTextField.resignFirstResponder()
+        confirmTextField.resignFirstResponder()
+        urlTextField.resignFirstResponder()
         performLogin(sender.tag)
     }
     
@@ -198,9 +204,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     
     // MARK: Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if saveButton === sender {
-            login = Login(username: nameTextField.text!, url: urlTextField.text!)
-        }
+        /*if saveButton === sender {
+            myLogin = Login(username: nameTextField.text!, url: urlTextField.text!)
+        }*/
     }
     
     @IBAction func cancelButton(sender: UIBarButtonItem) {
@@ -213,7 +219,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     func checkLogin(username: String, password: String ) -> Bool {
         // Compare entered username and passwords to keychain user and pass
         if password == MyKeychainWrapper.myObjectForKey("v_Data") as? String &&
-            username == NSUserDefaults.standardUserDefaults().valueForKey("username") as? String {
+            username == getDatum("username") {
             return true
         } else {
             return false
@@ -245,9 +251,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
                 let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
                 alertView.addAction(okAction)
                 self.presentViewController(alertView, animated: true, completion: nil)
+                passTextField.text = ""
+                confirmTextField.text = ""
             }
-            passTextField.text = ""
-            confirmTextField.text = ""
+            
             return false;
         // If URL text field is empty
         } else if urlTextField.text == "" {
@@ -266,8 +273,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     
     // Function to disable save button unless all text fields are validly filled
     func checkValidInputs(){
-        // If any text field is invalid, disable saveButton
-        saveButton.enabled = !textFieldIsValid()
+        // If any text field is invalid, disable loginButton
+        loginButton.enabled = textFieldIsValid()
+    }
+    
+    // MARK: Aliases
+    func getDatum(key:String) -> String? {
+        return NSUserDefaults.standardUserDefaults().valueForKey(key) as? String
+    }
+    
+    func setDatum(key key:String, datum:String){
+        NSUserDefaults.standardUserDefaults().setValue(datum, forKey: key)
     }
 }
 
