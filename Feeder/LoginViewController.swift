@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDelegate {
 
@@ -25,8 +26,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     // State of loginButton (Login or Create)
     let createLoginButtonTag = 0
     let loginButtonTag = 1
-    //let passTextFieldTag = 2
-    //let urlTextFieldTag = 3
     
     // Keychain wrapper
     let MyKeychainWrapper = KeychainWrapper()
@@ -34,12 +33,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     // Variables
     var login: Login?
     var isAuthenticated = false
+    var managedObjectContext: NSManagedObjectContext? = nil
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        // Load account from keychain
+        // Load account from coredata
         let hasAccount = NSUserDefaults.standardUserDefaults().boolForKey("hasAccountKey")
         
         // If account exists
@@ -87,14 +87,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             passTextField.becomeFirstResponder()
         case passTextField:
             if isAuthenticated {// Go to login
-                performLogin(loginButtonTag)
+                break
             } else {// If no authentication exists, continue to signup
                 confirmTextField.becomeFirstResponder()
             }
         case confirmTextField:
             urlTextField.becomeFirstResponder()
         case urlTextField:
-            performLogin(createLoginButtonTag)
+            break
         default:
             print("something has gone wrong")
         }
@@ -149,16 +149,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             }
             
             // If user doesn't have local login key, add username to local status object
-            let hasLoginKey = NSUserDefaults.standardUserDefaults().boolForKey("hasLoginKey")
-            if hasLoginKey == false {
+            let hasAccountKey = NSUserDefaults.standardUserDefaults().boolForKey("hasAccountKey")
+            if hasAccountKey == false {
                 NSUserDefaults.standardUserDefaults().setValue(self.nameTextField.text, forKey: "username")
+                NSUserDefaults.standardUserDefaults().setValue(self.urlTextField.text, forKey: "url")
             }
             
             // Store password in keychain for this user
             MyKeychainWrapper.mySetObject(passTextField.text, forKey:kSecValueData)
             MyKeychainWrapper.writeToKeychain()
             // Change state of login key to true and change button to login for future
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasLoginKey")
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasAccountKey")
             NSUserDefaults.standardUserDefaults().synchronize()
             loginButton.tag = loginButtonTag
             
@@ -172,7 +173,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
                 // 7.
                 let alertView = UIAlertController(title: "Login Problem",
                                                   message: "Wrong username or password." as String, preferredStyle:.Alert)
-                let okAction = UIAlertAction(title: "Foiled Again!", style: .Default, handler: nil)
+                let okAction = UIAlertAction(title: "I got this!", style: .Default, handler: nil)
                 alertView.addAction(okAction)
                 self.presentViewController(alertView, animated: true, completion: nil)
             }

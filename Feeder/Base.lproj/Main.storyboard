@@ -7,7 +7,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Login-->
+        <!--Edit Settings-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Feeder" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,7 +22,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nr1-E0-rmw" userLabel="Title Stack View">
                                 <rect key="frame" x="46" y="104" width="228" height="65"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It's Time to Feed" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="1" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yiD-1h-BhF">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="It's Time to Feed" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="1" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yiD-1h-BhF">
                                         <rect key="frame" x="0.0" y="0.0" width="228" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                         <nil key="highlightedColor"/>
@@ -80,7 +80,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eg5-mp-GFV">
                                         <rect key="frame" x="0.0" y="36" width="228" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="P8a-VZ-qw8">
                                         <rect key="frame" x="0.0" y="72" width="228" height="30"/>
@@ -90,7 +90,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="feeder url" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Ig5-06-uPy">
                                         <rect key="frame" x="0.0" y="108" width="228" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -134,7 +134,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Login" id="v1x-Sq-3OK"/>
+                    <navigationItem key="navigationItem" title="Edit Settings" id="v1x-Sq-3OK"/>
                     <connections>
                         <outlet property="confirmTextField" destination="P8a-VZ-qw8" id="nFB-bO-S9A"/>
                         <outlet property="createInfoLabel" destination="f7l-ZG-C12" id="Sl6-El-zI1"/>
@@ -142,11 +142,13 @@
                         <outlet property="nameTextField" destination="76y-7n-6Wh" id="NLi-kr-1kc"/>
                         <outlet property="passTextField" destination="eg5-mp-GFV" id="K1i-cY-my2"/>
                         <outlet property="urlTextField" destination="Ig5-06-uPy" id="Dud-Oc-WN1"/>
+                        <segue destination="t28-43-mvL" kind="unwind" identifier="dismissLogin" unwindAction="unwindSegue:" id="Ajk-hS-vvx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="t28-43-mvL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2854" y="325"/>
+            <point key="canvasLocation" x="2431" y="297"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KQi-Qb-DVT">
@@ -224,6 +226,9 @@
                                 <rect key="frame" x="233" y="7" width="71" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Settings"/>
+                                <connections>
+                                    <segue destination="FP1-db-6Kf" kind="show" id="3SN-HX-XRM"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -386,7 +391,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fd7-m9-5BW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2080" y="804"/>
+            <point key="canvasLocation" x="2020" y="686"/>
         </scene>
     </scenes>
     <resources>
