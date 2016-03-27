@@ -92,15 +92,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         switch textField {
         case nameTextField:
             passTextField.becomeFirstResponder()
+            checkValidInputs()
         case passTextField:
+            checkValidInputs()
             if isAuthenticated {// Go to login
                 break
             } else {// If no authentication exists, continue to signup
                 confirmTextField.becomeFirstResponder()
             }
         case confirmTextField:
+            checkValidInputs()
             urlTextField.becomeFirstResponder()
         case urlTextField:
+            checkValidInputs()
             break
         default:
             print("something has gone wrong")
@@ -179,7 +183,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             if checkLogin(nameTextField.text!, password: passTextField.text!) {
                 performSegueWithIdentifier("dismissLogin", sender: self)
             } else {
-                // 7.
+                // Given password doesn't match saved password: clear pass text field and alert user
+                passTextField.text = ""
                 let alertView = UIAlertController(title: "Login Problem",
                                                   message: "Wrong username or password." as String, preferredStyle:.Alert)
                 let okAction = UIAlertAction(title: "I got this!", style: .Default, handler: nil)
@@ -194,7 +199,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     // MARK: Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if saveButton === sender {
-            
+            login = Login(username: nameTextField.text!, url: urlTextField.text!)
         }
     }
     
@@ -215,5 +220,54 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         }
     }
     
+    /**
+     * Function to test if all text fields are valid
+     * @param Parameter for if text alerts are needed, but is false by default
+     * @return Boolean value for if any text field is empty at function call
+     */
+    func textFieldIsValid(needAlert: Bool=false) -> Bool {
+        // if either text field is empty, warn user with alert
+        if (nameTextField.text == "" || passTextField.text == "") {
+            if needAlert {
+                let alertView = UIAlertController(title: "Input Problem",
+                                                  message: "Username or password fields empty." as String, preferredStyle:.Alert)
+                let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
+                alertView.addAction(okAction)
+                self.presentViewController(alertView, animated: true, completion: nil)
+            }
+            return false;
+        }
+        // If this is Settings View or Signup View and pass and confirm text fields don't match
+        if (!isAuthenticated && passTextField.text != confirmTextField.text) {
+            if needAlert {
+                let alertView = UIAlertController(title: "Signup Problem",
+                                                  message: "Passwords do not match" as String, preferredStyle:.Alert)
+                let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
+                alertView.addAction(okAction)
+                self.presentViewController(alertView, animated: true, completion: nil)
+            }
+            passTextField.text = ""
+            confirmTextField.text = ""
+            return false;
+        // If URL text field is empty
+        } else if urlTextField.text == "" {
+            if needAlert {
+                let alertView = UIAlertController(title: "Signup Problem",
+                                                  message: "URL Field Empty" as String, preferredStyle:.Alert)
+                let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
+                alertView.addAction(okAction)
+                self.presentViewController(alertView, animated: true, completion: nil)
+            }
+            return false;
+        }
+        // All tests have suceeded, everything is valid
+        return true
+    }
+    
+    // Function to disable save button unless all text fields are validly filled
+    func checkValidInputs(){
+        // If any text field is invalid, disable saveButton
+        saveButton.enabled = !textFieldIsValid()
+    }
 }
 
