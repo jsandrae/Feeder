@@ -22,6 +22,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     // Button and Labels
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var createInfoLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
     
     // State of loginButton (Login or Create)
     let createLoginButtonTag = 0
@@ -48,6 +49,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         // Load account from coredata
         //let hasAccount = NSUserDefaults.standardUserDefaults().boolForKey("hasAccountKey")
         
+        // If account loaded, store username in text field as convenience factor
+        nameTextField.text = getDatum("username")
+        
         // If logging in
         if isLogin() {
             // Change button attributes
@@ -59,6 +63,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             // Change label text
             createInfoLabel.text = "Log in with username and password"
             isAuthenticated = true
+            updateName()
         } else { // Else, change button to create account, unhide account creation label
             // Change button attributes
             loginButton.setTitle("Create", forState: UIControlState.Normal)
@@ -77,12 +82,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             // Change informational text
             createInfoLabel.text = "Edit any field you wish to change."
             urlTextField.text = getDatum("url")
+            updateName()
         }
         
-        // If account loaded, store username in text field as convenience factor
-        nameTextField.text = getDatum("username")
-        // Set password text field as default text field on load
-        passTextField.becomeFirstResponder()
+        
+        // If creating account, set user as default text field, else password
+        if isSetup() {
+            nameTextField.becomeFirstResponder()
+        } else {
+            // Set password text field as default text field on load
+            passTextField.becomeFirstResponder()
+        }
         
         // Set up view controller to be own text field delegates
         nameTextField.delegate = self
@@ -104,11 +114,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder();
         
-        checkValidInputs()
-        
         switch textField {
         case nameTextField:
             passTextField.becomeFirstResponder()
+            updateName()
         case passTextField:
             if isLogin() {// Go to login
                 break
@@ -123,6 +132,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             print("something has gone wrong")
         }
         return true
+    }
+    
+    /** 
+     * Function to perform actions after a text field has ended entry
+     */
+    func textFieldDidEndEditing(textField: UITextField) {
+        checkValidInputs()
     }
     
     
@@ -304,6 +320,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     
     func isSettings() -> Bool {
         return segueID == settingsA
+    }
+    
+    func updateName() {
+        usernameLabel.text = "the Dog \(nameTextField.text!)!"
     }
     
     func confirmHelper(_:UIAlertAction){

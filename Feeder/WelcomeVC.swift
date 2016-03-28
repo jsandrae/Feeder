@@ -30,6 +30,15 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
         
         // Hide view until return from login view
         view.alpha = 0
+        
+        /*
+        let backgroundImage = UIImageView(frame: UIScreen.mainScreen().bounds)
+        backgroundImage.image = UIImage(named: "HungryDog")
+        self.view.insertSubview(backgroundImage, atIndex: 0)
+
+        let bImage = UIImage(named: "HungryDog")
+        let bImageView = UIImageView(image: bImage)
+        self.view.addSubview(bImageView)*/
     }
     
     /**
@@ -93,7 +102,7 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
     @IBAction func unwindSegue(segue: UIStoryboardSegue){
         isAuthenticated = true
         view.alpha = 1.0
-        
+        usernameLabel.text = "the Dog \(login!.username)!"
     }
     
 
