@@ -81,6 +81,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         
         // If account loaded, store username in text field as convenience factor
         nameTextField.text = getDatum("username")
+        // Set password text field as default text field on load
+        passTextField.becomeFirstResponder()
         
         // Set up view controller to be own text field delegates
         nameTextField.delegate = self
@@ -198,7 +200,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     
     // MARK: Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+        let segueID = segue.identifier!
+        if segueID == "dismissLogin" {
+            let newLogin = Login(username: getDatum("username")!, url: getDatum("url")!)
+            //let nav = segue.destinationViewController as! UINavigationController
+            (segue.destinationViewController as! WelcomeVC).login = newLogin
+        }
     }
 
     // MARK: Validation
@@ -307,8 +314,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         // If user doesn't have local login key, add username to local status object
         let hasAccountKey = NSUserDefaults.standardUserDefaults().boolForKey("hasAccountKey")
         if hasAccountKey == false {
-            NSUserDefaults.standardUserDefaults().setValue(self.nameTextField.text, forKey: "username")
-            NSUserDefaults.standardUserDefaults().setValue(self.urlTextField.text, forKey: "url")
+            setDatum(key: "username", datum: nameTextField.text!)
+            setDatum(key: "url", datum: urlTextField.text!)
         }
         
         // Store password in keychain for this user
