@@ -141,7 +141,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     
     @IBAction func loginAction(sender: UIButton) {
         removeAllResponders()
-        performLogin(sender.tag)
+        let isValid = textFieldIsFull(true)
+        if isValid {
+            performLogin(sender.tag)
+        }
     }
     
     @IBAction func cancelButton(sender: UIBarButtonItem) {
@@ -150,36 +153,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     
     func performLogin(senderID:Int){
         
-        // if either text field is empty, warn user with alert
-        if (nameTextField.text == "" || passTextField.text == "") {
-            let alertView = UIAlertController(title: "Input Problem",
-                                              message: "Username or password fields empty." as String, preferredStyle:.Alert)
-            let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
-            alertView.addAction(okAction)
-            self.presentViewController(alertView, animated: true, completion: nil)
-            return;
-        }
-        
         // Find current status of button and perform actions depending on if it's create or login
-        if senderID == createLoginButtonTag { // If create button
+        if isSetup() || isSettings() {
             
-            // Check for text field errors
-            if passTextField.text != confirmTextField.text {
-                let alertView = UIAlertController(title: "Signup Problem",
-                                                  message: "Passwords do not match" as String, preferredStyle:.Alert)
-                let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
-                alertView.addAction(okAction)
-                self.presentViewController(alertView, animated: true, completion: nil)
-                passTextField.text = ""
-                confirmTextField.text = ""
-                return;
-            } else if urlTextField.text == "" {
-                let alertView = UIAlertController(title: "Signup Problem",
-                                                  message: "URL Field Empty" as String, preferredStyle:.Alert)
-                let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
-                alertView.addAction(okAction)
-                self.presentViewController(alertView, animated: true, completion: nil)
-                return;
+            // If changing data but pass and confirm don't match, bail
+            if invalidTextField(){
+                return
+            }
+            
+            if isSettings() {
+                confirmChange()
             }
             
             // If user doesn't have local login key, add username to local status object
@@ -199,7 +182,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             
             // Dismiss this view
             performSegueWithIdentifier("dismissLogin", sender: self)
-        } else if senderID == loginButtonTag { // elseif login button
+        } else if isLogin() { // elseif login button
             // Compare typed user information to saved password in keychain
             if checkLogin(nameTextField.text!, password: passTextField.text!) {
                 performSegueWithIdentifier("dismissLogin", sender: self)
@@ -222,7 +205,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         
     }
 
-    // MARK: Helper functions
+    // MARK: Validation
     // Function to compare username for local login to given, and compare typed password to that saved on keychain
     func checkLogin(username: String, password: String ) -> Bool {
         // Compare entered username and passwords to keychain user and pass
@@ -239,7 +222,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
      * @param Parameter for if text alerts are needed, but is false by default
      * @return Boolean value for if any text field is empty at function call
      */
-    func textFieldIsValid(needAlert: Bool=false) -> Bool {
+    func textFieldIsFull(needAlert: Bool=false) -> Bool {
         // if either text field is empty, warn user with alert
         if (nameTextField.text == "" || passTextField.text == "") {
             if needAlert {
@@ -253,20 +236,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         }
         // If this is Settings View or Signup View and pass and confirm text fields don't match
         if isSetup() || isSettings() {
-            if passTextField.text != confirmTextField.text {
-                if needAlert {
-                    let alertView = UIAlertController(title: "Signup Problem",
-                                                      message: "Passwords do not match" as String, preferredStyle:.Alert)
-                    let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
-                    alertView.addAction(okAction)
-                    self.presentViewController(alertView, animated: true, completion: nil)
-                    passTextField.text = ""
-                    confirmTextField.text = ""
-                }
-                return false;
-            
-                // If URL text field is empty
-            } else if urlTextField.text == "" {
+            if urlTextField.text == "" || confirmTextField.text == "" { // If URL text field is empty
                 if needAlert {
                     let alertView = UIAlertController(title: "Signup Problem",
                                                       message: "URL Field Empty" as String, preferredStyle:.Alert)
@@ -281,13 +251,30 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         return true
     }
     
+    /**
+     * Function to test if password and confirm password strings don't match
+     */
+    func invalidTextField() -> Bool {
+        if passTextField.text != confirmTextField.text {
+            let alertView = UIAlertController(title: "Signup Problem",
+                                              message: "Passwords do not match" as String, preferredStyle:.Alert)
+            let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
+            alertView.addAction(okAction)
+            self.presentViewController(alertView, animated: true, completion: nil)
+            passTextField.text = ""
+            confirmTextField.text = ""
+            return true
+        }
+        return false
+    }
+    
     // Function to disable save button unless all text fields are validly filled
     func checkValidInputs(){
         // If any text field is invalid, disable loginButton
-        loginButton.enabled = textFieldIsValid()
+        loginButton.enabled = textFieldIsFull()
     }
     
-    // MARK: Aliases
+    // MARK: Helper Methods
     func getDatum(key:String) -> String? {
         return NSUserDefaults.standardUserDefaults().valueForKey(key) as? String
     }
@@ -308,11 +295,34 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     }
     
     func isSetup() -> Bool {
-        return !NSUserDefaults.standardUserDefaults().boolForKey("hasAccountKey") && segueID == loginA
+        let test = NSUserDefaults.standardUserDefaults().boolForKey("hasAccountKey")
+        return !test && segueID == loginA
     }
     
     func isSettings() -> Bool {
         return segueID == settingsA
+    }
+    
+    func confirmChange() -> Bool? {
+        var answer: Bool?
+        let alert = UIAlertController(title: "Update Settings", message: "Updating your settings will destory all previous settings. Are you sure you wish to continue?", preferredStyle: .Alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel){ (action) in
+            answer = false
+        }
+        let destroyAction = UIAlertAction(title: "Confirm New Settings", style: .Destructive) { (action) in
+            answer = true
+        }
+        alert.addAction(cancelAction)
+        alert.addAction(destroyAction)
+        
+        // Support display in iPad
+        alert.popoverPresentationController?.sourceView = self.view
+        alert.popoverPresentationController?.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0)
+        
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        return answer
     }
 }
 
