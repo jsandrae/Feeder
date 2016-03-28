@@ -162,26 +162,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             }
             
             if isSettings() {
+                let alertView = UIAlertController(title: "Update Settings", message: "Updating your settings will destory all previous settings. Are you sure you wish to continue?", preferredStyle: .Alert)
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                alertView.addAction(cancelAction)
+                let updateAction = UIAlertAction(title: "Confirm", style: .Destructive, handler: confirmHelper)
+                alertView.addAction(updateAction)
+                
+                // Support display in iPad
+                alertView.popoverPresentationController?.sourceView = self.view
+                alertView.popoverPresentationController?.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0)
+                
+                
+                self.presentViewController(alertView, animated: true, completion: nil)
+            } else {
                 confirmChange()
             }
-            
-            // If user doesn't have local login key, add username to local status object
-            let hasAccountKey = NSUserDefaults.standardUserDefaults().boolForKey("hasAccountKey")
-            if hasAccountKey == false {
-                NSUserDefaults.standardUserDefaults().setValue(self.nameTextField.text, forKey: "username")
-                NSUserDefaults.standardUserDefaults().setValue(self.urlTextField.text, forKey: "url")
-            }
-            
-            // Store password in keychain for this user
-            MyKeychainWrapper.mySetObject(passTextField.text, forKey:kSecValueData)
-            MyKeychainWrapper.writeToKeychain()
-            // Change state of login key to true and change button to login for future
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasAccountKey")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            loginButton.tag = loginButtonTag
-            
-            // Dismiss this view
-            performSegueWithIdentifier("dismissLogin", sender: self)
         } else if isLogin() { // elseif login button
             // Compare typed user information to saved password in keychain
             if checkLogin(nameTextField.text!, password: passTextField.text!) {
@@ -303,26 +299,28 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         return segueID == settingsA
     }
     
-    func confirmChange() -> Bool? {
-        var answer: Bool?
-        let alert = UIAlertController(title: "Update Settings", message: "Updating your settings will destory all previous settings. Are you sure you wish to continue?", preferredStyle: .Alert)
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel){ (action) in
-            answer = false
+    func confirmHelper(_:UIAlertAction){
+        confirmChange()
+    }
+    
+    func confirmChange() {
+        // If user doesn't have local login key, add username to local status object
+        let hasAccountKey = NSUserDefaults.standardUserDefaults().boolForKey("hasAccountKey")
+        if hasAccountKey == false {
+            NSUserDefaults.standardUserDefaults().setValue(self.nameTextField.text, forKey: "username")
+            NSUserDefaults.standardUserDefaults().setValue(self.urlTextField.text, forKey: "url")
         }
-        let destroyAction = UIAlertAction(title: "Confirm New Settings", style: .Destructive) { (action) in
-            answer = true
-        }
-        alert.addAction(cancelAction)
-        alert.addAction(destroyAction)
         
-        // Support display in iPad
-        alert.popoverPresentationController?.sourceView = self.view
-        alert.popoverPresentationController?.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0)
+        // Store password in keychain for this user
+        MyKeychainWrapper.mySetObject(passTextField.text, forKey:kSecValueData)
+        MyKeychainWrapper.writeToKeychain()
+        // Change state of login key to true and change button to login for future
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasAccountKey")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        loginButton.tag = loginButtonTag
         
-        
-        self.presentViewController(alert, animated: true, completion: nil)
-        return answer
+        // Dismiss this view
+        performSegueWithIdentifier("dismissLogin", sender: self)
     }
 }
 

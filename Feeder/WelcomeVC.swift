@@ -93,6 +93,7 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
     @IBAction func unwindSegue(segue: UIStoryboardSegue){
         isAuthenticated = true
         view.alpha = 1.0
+        
     }
     
 
