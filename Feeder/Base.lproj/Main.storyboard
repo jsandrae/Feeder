@@ -16,7 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nr1-E0-rmw" userLabel="Title Stack View">
@@ -170,7 +170,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="scK-we-d3j" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wKo-WS-s4q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -193,7 +193,7 @@
                         <viewControllerLayoutGuide type="bottom" id="dpm-sZ-b69"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MgJ-cC-iZA">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="q5a-36-eX3" userLabel="Title Stack View">
@@ -227,14 +227,33 @@
                                 </variation>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2QF-CA-6a2">
-                                <rect key="frame" x="34" y="311" width="240" height="128"/>
+                                <rect key="frame" x="34" y="408" width="240" height="128"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dga-Ps-M6u">
+                                <rect key="frame" x="95" y="237" width="131" height="66"/>
+                                <state key="normal" title="Button" backgroundImage="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c75-9z-3RD">
+                                <rect key="frame" x="95" y="0.0" width="131" height="66"/>
+                                <state key="normal" title="Button" backgroundImage="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0Q-th-myy">
+                                <rect key="frame" x="95" y="303" width="131" height="66"/>
+                                <state key="normal" title="Button" backgroundImage="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="dga-Ps-M6u" firstAttribute="top" secondItem="q5a-36-eX3" secondAttribute="bottom" constant="24" id="54f-iQ-q17"/>
+                            <constraint firstItem="f0Q-th-myy" firstAttribute="top" secondItem="dga-Ps-M6u" secondAttribute="bottom" id="EG8-UB-djF"/>
                             <constraint firstItem="q5a-36-eX3" firstAttribute="top" secondItem="ak8-Zn-SLE" secondAttribute="bottom" constant="84" id="JWF-mv-zcQ"/>
                             <constraint firstItem="q5a-36-eX3" firstAttribute="leading" secondItem="MgJ-cC-iZA" secondAttribute="leadingMargin" constant="30" id="cVY-Yf-Jg9"/>
+                            <constraint firstItem="c75-9z-3RD" firstAttribute="centerX" secondItem="MgJ-cC-iZA" secondAttribute="centerX" id="fDM-XK-Uyj"/>
+                            <constraint firstItem="f0Q-th-myy" firstAttribute="width" secondItem="dga-Ps-M6u" secondAttribute="width" id="hgM-RH-LlE"/>
+                            <constraint firstItem="dga-Ps-M6u" firstAttribute="centerX" secondItem="MgJ-cC-iZA" secondAttribute="centerX" id="i9m-0n-TQV"/>
+                            <constraint firstItem="f0Q-th-myy" firstAttribute="centerX" secondItem="MgJ-cC-iZA" secondAttribute="centerX" id="oxn-Cq-8sX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="q5a-36-eX3" secondAttribute="trailing" constant="30" id="scp-Zd-Tge"/>
+                            <constraint firstItem="c75-9z-3RD" firstAttribute="width" secondItem="dga-Ps-M6u" secondAttribute="width" id="wJU-xf-1p8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Welcome" id="0dD-mH-zRL">
