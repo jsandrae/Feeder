@@ -47,7 +47,7 @@
                                 </variation>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXh-Sy-thn">
-                                <rect key="frame" x="95" y="367" width="131" height="66"/>
+                                <rect key="frame" x="75.5" y="367" width="170" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RXh-Sy-thn" secondAttribute="height" multiplier="166:61" id="Gsg-Cs-2IC"/>
                                 </constraints>
@@ -108,7 +108,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in with your username and password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7l-ZG-C12">
-                                <rect key="frame" x="46" y="445" width="228" height="21"/>
+                                <rect key="frame" x="46" y="422" width="228" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -226,34 +226,53 @@
                                     </mask>
                                 </variation>
                             </stackView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2QF-CA-6a2">
-                                <rect key="frame" x="34" y="408" width="240" height="128"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dga-Ps-M6u">
-                                <rect key="frame" x="95" y="237" width="131" height="66"/>
-                                <state key="normal" title="Button" backgroundImage="Button"/>
+                                <rect key="frame" x="75" y="237" width="170" height="43"/>
+                                <state key="normal" title="Schedule Feeding" backgroundImage="Button">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="disabled" backgroundImage="disabledButton">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c75-9z-3RD">
-                                <rect key="frame" x="95" y="0.0" width="131" height="66"/>
-                                <state key="normal" title="Button" backgroundImage="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPO-GF-bzd">
+                                <rect key="frame" x="75" y="298" width="170" height="43"/>
+                                <state key="normal" title="Initiate Feeding" backgroundImage="Button">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="disabled" backgroundImage="disabledButton">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0Q-th-myy">
-                                <rect key="frame" x="95" y="303" width="131" height="66"/>
-                                <state key="normal" title="Button" backgroundImage="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEU-34-npx">
+                                <rect key="frame" x="75" y="359" width="170" height="43"/>
+                                <state key="normal" title="Feeding Log" backgroundImage="Button">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="disabled" backgroundImage="disabledButton">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2QF-CA-6a2">
+                                <rect key="frame" x="76" y="426" width="168" height="80"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="sPO-GF-bzd" firstAttribute="centerX" secondItem="MgJ-cC-iZA" secondAttribute="centerX" id="482-JB-Vbj"/>
                             <constraint firstItem="dga-Ps-M6u" firstAttribute="top" secondItem="q5a-36-eX3" secondAttribute="bottom" constant="24" id="54f-iQ-q17"/>
-                            <constraint firstItem="f0Q-th-myy" firstAttribute="top" secondItem="dga-Ps-M6u" secondAttribute="bottom" id="EG8-UB-djF"/>
+                            <constraint firstItem="2QF-CA-6a2" firstAttribute="leading" secondItem="MgJ-cC-iZA" secondAttribute="leadingMargin" constant="60" id="56u-nJ-dfs"/>
                             <constraint firstItem="q5a-36-eX3" firstAttribute="top" secondItem="ak8-Zn-SLE" secondAttribute="bottom" constant="84" id="JWF-mv-zcQ"/>
+                            <constraint firstItem="sPO-GF-bzd" firstAttribute="top" secondItem="dga-Ps-M6u" secondAttribute="bottom" constant="18" id="OWA-cD-8eq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2QF-CA-6a2" secondAttribute="trailing" constant="60" id="RBx-yu-5wE"/>
+                            <constraint firstItem="2QF-CA-6a2" firstAttribute="top" secondItem="PEU-34-npx" secondAttribute="bottom" constant="24" id="Slb-fi-9WE"/>
                             <constraint firstItem="q5a-36-eX3" firstAttribute="leading" secondItem="MgJ-cC-iZA" secondAttribute="leadingMargin" constant="30" id="cVY-Yf-Jg9"/>
-                            <constraint firstItem="c75-9z-3RD" firstAttribute="centerX" secondItem="MgJ-cC-iZA" secondAttribute="centerX" id="fDM-XK-Uyj"/>
-                            <constraint firstItem="f0Q-th-myy" firstAttribute="width" secondItem="dga-Ps-M6u" secondAttribute="width" id="hgM-RH-LlE"/>
+                            <constraint firstItem="sPO-GF-bzd" firstAttribute="width" secondItem="dga-Ps-M6u" secondAttribute="width" id="dMa-tE-AbK"/>
+                            <constraint firstItem="PEU-34-npx" firstAttribute="centerX" secondItem="MgJ-cC-iZA" secondAttribute="centerX" id="dfR-8s-pGZ"/>
                             <constraint firstItem="dga-Ps-M6u" firstAttribute="centerX" secondItem="MgJ-cC-iZA" secondAttribute="centerX" id="i9m-0n-TQV"/>
-                            <constraint firstItem="f0Q-th-myy" firstAttribute="centerX" secondItem="MgJ-cC-iZA" secondAttribute="centerX" id="oxn-Cq-8sX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="q5a-36-eX3" secondAttribute="trailing" constant="30" id="scp-Zd-Tge"/>
-                            <constraint firstItem="c75-9z-3RD" firstAttribute="width" secondItem="dga-Ps-M6u" secondAttribute="width" id="wJU-xf-1p8"/>
+                            <constraint firstItem="PEU-34-npx" firstAttribute="top" secondItem="sPO-GF-bzd" secondAttribute="bottom" constant="18" id="y1y-fk-sjl"/>
+                            <constraint firstItem="PEU-34-npx" firstAttribute="width" secondItem="dga-Ps-M6u" secondAttribute="width" id="ysk-np-CQM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Welcome" id="0dD-mH-zRL">
@@ -297,8 +316,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Button" width="131" height="66"/>
-        <image name="disabledButton" width="131" height="66"/>
+        <image name="Button" width="170" height="43"/>
+        <image name="disabledButton" width="170" height="43"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="52s-aH-hhX"/>

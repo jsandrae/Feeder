@@ -12,8 +12,6 @@ import CoreData
 class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
 
     // MARK: Properties
-    @IBOutlet weak var usernameLabel: UILabel!
-    
     var isAuthenticated = false
     
     var managedObjectContext: NSManagedObjectContext? = nil
@@ -21,6 +19,14 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
     
     var didReturnFromBackground = false
     
+    // Buttons and Lables
+    @IBOutlet weak var usernameLabel: UILabel!
+    
+    
+    // Properties
+    
+    
+    // Objects
     var login: Login?
     var username: String?
     
@@ -66,15 +72,6 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
         super.viewDidAppear(false)
         self.showLoginView()
     }
-    
-    /**
-     * Function for checking for checking authentication
-     */
-    func showLoginView() {
-        if !isAuthenticated {
-            self.performSegueWithIdentifier("gotoLogin", sender: self)
-        }
-    }
 
     /**
      * Function for app to receive signal to reduce memory footprint
@@ -84,8 +81,10 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: Actions
     
-    // MARK: - Navigation
+    
+    // MARK: Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -105,5 +104,14 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
         usernameLabel.text = "the Dog \(login!.username)!"
     }
     
+    // MARK: Helper Functions
+    /**
+     * Function for checking for checking authentication
+     */
+    func showLoginView() {
+        if !isAuthenticated {
+            self.performSegueWithIdentifier("gotoLogin", sender: self)
+        }
+    }
 
 }
