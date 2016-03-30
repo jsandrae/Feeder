@@ -16,6 +16,9 @@
 		9632983A1C96348A00A8E2A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 963298381C96348A00A8E2A1 /* LaunchScreen.storyboard */; };
 		963298451C96348A00A8E2A1 /* FeederTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963298441C96348A00A8E2A1 /* FeederTests.swift */; };
 		963298501C96EDC800A8E2A1 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9632984F1C96EDC800A8E2A1 /* Login.swift */; };
+		96E8049B1CAC5B0600D8DBD6 /* ScheduledFeeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E8049A1CAC5B0600D8DBD6 /* ScheduledFeeding.swift */; };
+		96E8049D1CAC5BE600D8DBD6 /* ScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E8049C1CAC5BE600D8DBD6 /* ScheduleVC.swift */; };
+		96E8049F1CAC5CC900D8DBD6 /* Feeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E8049E1CAC5CC900D8DBD6 /* Feeding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		963298441C96348A00A8E2A1 /* FeederTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeederTests.swift; sourceTree = "<group>"; };
 		963298461C96348A00A8E2A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9632984F1C96EDC800A8E2A1 /* Login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		96E8049A1CAC5B0600D8DBD6 /* ScheduledFeeding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduledFeeding.swift; sourceTree = "<group>"; };
+		96E8049C1CAC5BE600D8DBD6 /* ScheduleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleVC.swift; sourceTree = "<group>"; };
+		96E8049E1CAC5CC900D8DBD6 /* Feeding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feeding.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +94,9 @@
 				9632982F1C96348A00A8E2A1 /* AppDelegate.swift */,
 				963298311C96348A00A8E2A1 /* LoginViewController.swift */,
 				963298331C96348A00A8E2A1 /* Main.storyboard */,
+				96E8049A1CAC5B0600D8DBD6 /* ScheduledFeeding.swift */,
+				96E8049C1CAC5BE600D8DBD6 /* ScheduleVC.swift */,
+				96E8049E1CAC5CC900D8DBD6 /* Feeding.swift */,
 				9632984F1C96EDC800A8E2A1 /* Login.swift */,
 				962AFDBB1CA244080013942B /* KeychainWrapper.h */,
 				962AFDBC1CA244080013942B /* KeychainWrapper.m */,
@@ -210,6 +219,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96E8049B1CAC5B0600D8DBD6 /* ScheduledFeeding.swift in Sources */,
+				96E8049D1CAC5BE600D8DBD6 /* ScheduleVC.swift in Sources */,
+				96E8049F1CAC5CC900D8DBD6 /* Feeding.swift in Sources */,
 				963298501C96EDC800A8E2A1 /* Login.swift in Sources */,
 				963298321C96348A00A8E2A1 /* LoginViewController.swift in Sources */,
 				963298301C96348A00A8E2A1 /* AppDelegate.swift in Sources */,
