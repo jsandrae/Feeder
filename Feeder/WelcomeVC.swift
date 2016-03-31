@@ -27,7 +27,7 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
     
     
     // Objects
-    var login: Login?
+    var login: LoginModel?
     var username: String?
     
     // MARK: Loading Navigation

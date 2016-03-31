@@ -11,7 +11,7 @@
 
 import UIKit
 
-class Feeding: NSObject, NSCoding {
+class FeedingModel: NSObject, NSCoding {
     
     // MARK: Properties
     var date: String?

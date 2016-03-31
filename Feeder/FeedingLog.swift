@@ -14,7 +14,7 @@ import UIKit
 class FeedingLog: UITableViewController {
     
     // MARK: Properties
-    var feedings = [Feeding]()
+    var feedings = [FeedingModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,14 +82,14 @@ class FeedingLog: UITableViewController {
     
     // MARK NSCoding
     func saveFeedings(){
-        let isSucessfulSave = NSKeyedArchiver.archiveRootObject(feedings, toFile: Feeding.ArchiveURL.path!)
+        let isSucessfulSave = NSKeyedArchiver.archiveRootObject(feedings, toFile: FeedingModel.ArchiveURL.path!)
         if !isSucessfulSave {
             print("failed to save feedings")
         }
     }
     
-    func loadFeedings() -> [Feeding]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(Feeding.ArchiveURL.path!) as? [Feeding]
+    func loadFeedings() -> [FeedingModel]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(FeedingModel.ArchiveURL.path!) as? [FeedingModel]
     }
 
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Login: NSObject, NSCoding {
+class LoginModel: NSObject, NSCoding {
     
     // MARK: Properties
     var username: String

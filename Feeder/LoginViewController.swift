@@ -33,7 +33,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     let MyKeychainWrapper = KeychainWrapper()
     
     // Variables
-    var myLogin: Login?
+    var myLogin: LoginModel?
     var isAuthenticated = false
     var managedObjectContext: NSManagedObjectContext? = nil
     var segueID: String?
@@ -218,7 +218,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let segueID = segue.identifier!
         if segueID == "dismissLogin" {
-            let newLogin = Login(username: getDatum("username")!, url: getDatum("url")!)
+            let newLogin = LoginModel(username: getDatum("username")!, url: getDatum("url")!)
             //let nav = segue.destinationViewController as! UINavigationController
             (segue.destinationViewController as! WelcomeVC).login = newLogin
         }
