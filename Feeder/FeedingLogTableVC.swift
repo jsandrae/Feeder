@@ -11,7 +11,7 @@
 
 import UIKit
 
-class FeedingLog: UITableViewController {
+class FeedingLogTableVC: UITableViewController {
     
     // MARK: Properties
     var feedings = [FeedingModel]()

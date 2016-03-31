@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nr1-E0-rmw" userLabel="Title Stack View">
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nr1-E0-rmw" userLabel="Title Stack View">
                                 <rect key="frame" x="46" y="74" width="228" height="65"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="It's Time to Feed" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="1" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yiD-1h-BhF">
@@ -72,7 +72,7 @@
                                     <action selector="loginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o63-wc-xR4"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="czs-Hc-tuy" userLabel="TextField Stack View">
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="czs-Hc-tuy" userLabel="TextField Stack View">
                                 <rect key="frame" x="46" y="175" width="228" height="138"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="your nickname" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="76y-7n-6Wh">
@@ -187,7 +187,7 @@
         <!--Feeding Schedule Table VC-->
         <scene sceneID="1Q9-AI-cd9">
             <objects>
-                <tableViewController title="Feeding Schedule Table VC" id="GzN-yA-PHf" customClass="ScheduleVC" customModule="Feeder" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Feeding Schedule Table VC" id="GzN-yA-PHf" customClass="ScheduleTableVC" customModule="Feeder" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="EBe-h1-3e0">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -248,7 +248,7 @@
         <!--Feeding Log Table VC-->
         <scene sceneID="amb-Mc-9pz">
             <objects>
-                <tableViewController title="Feeding Log Table VC" id="yWe-2J-eq3" customClass="FeedingLog" customModule="Feeder" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Feeding Log Table VC" id="yWe-2J-eq3" customClass="FeedingLogTableVC" customModule="Feeder" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="Hc1-HV-bvF">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -295,7 +295,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HEN-Yf-l7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1885" y="1024"/>
+            <point key="canvasLocation" x="2371" y="1024"/>
         </scene>
         <!--WelcomeVC-->
         <scene sceneID="lm5-dI-RiY">
