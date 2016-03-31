@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ScheduleVC: UITableViewController {
+class ScheduleTableVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

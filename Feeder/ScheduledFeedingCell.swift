@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ScheduledFeeding: UITableViewCell {
+class ScheduledFeedingCell: UITableViewCell {
     
     // MARK: Properties
     @IBOutlet weak var time: UILabel!
