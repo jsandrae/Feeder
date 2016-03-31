@@ -19,6 +19,8 @@
 		96E8049B1CAC5B0600D8DBD6 /* ScheduledFeeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E8049A1CAC5B0600D8DBD6 /* ScheduledFeeding.swift */; };
 		96E8049D1CAC5BE600D8DBD6 /* ScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E8049C1CAC5BE600D8DBD6 /* ScheduleVC.swift */; };
 		96E8049F1CAC5CC900D8DBD6 /* Feeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E8049E1CAC5CC900D8DBD6 /* Feeding.swift */; };
+		96E804A31CACAA6100D8DBD6 /* FeedingLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E804A21CACAA6100D8DBD6 /* FeedingLog.swift */; };
+		96E804A51CACB17700D8DBD6 /* FeedingLogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E804A41CACB17700D8DBD6 /* FeedingLogCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		96E8049A1CAC5B0600D8DBD6 /* ScheduledFeeding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduledFeeding.swift; sourceTree = "<group>"; };
 		96E8049C1CAC5BE600D8DBD6 /* ScheduleVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleVC.swift; sourceTree = "<group>"; };
 		96E8049E1CAC5CC900D8DBD6 /* Feeding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feeding.swift; sourceTree = "<group>"; };
+		96E804A21CACAA6100D8DBD6 /* FeedingLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedingLog.swift; sourceTree = "<group>"; };
+		96E804A41CACB17700D8DBD6 /* FeedingLogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedingLogCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,8 @@
 				963298311C96348A00A8E2A1 /* LoginViewController.swift */,
 				963298331C96348A00A8E2A1 /* Main.storyboard */,
 				96E8049A1CAC5B0600D8DBD6 /* ScheduledFeeding.swift */,
+				96E804A21CACAA6100D8DBD6 /* FeedingLog.swift */,
+				96E804A41CACB17700D8DBD6 /* FeedingLogCell.swift */,
 				96E8049C1CAC5BE600D8DBD6 /* ScheduleVC.swift */,
 				96E8049E1CAC5CC900D8DBD6 /* Feeding.swift */,
 				9632984F1C96EDC800A8E2A1 /* Login.swift */,
@@ -222,11 +228,13 @@
 				96E8049B1CAC5B0600D8DBD6 /* ScheduledFeeding.swift in Sources */,
 				96E8049D1CAC5BE600D8DBD6 /* ScheduleVC.swift in Sources */,
 				96E8049F1CAC5CC900D8DBD6 /* Feeding.swift in Sources */,
+				96E804A31CACAA6100D8DBD6 /* FeedingLog.swift in Sources */,
 				963298501C96EDC800A8E2A1 /* Login.swift in Sources */,
 				963298321C96348A00A8E2A1 /* LoginViewController.swift in Sources */,
 				963298301C96348A00A8E2A1 /* AppDelegate.swift in Sources */,
 				962AFDBD1CA244080013942B /* KeychainWrapper.m in Sources */,
 				9612ACAB1CA0A1B100E135C0 /* WelcomeVC.swift in Sources */,
+				96E804A51CACB17700D8DBD6 /* FeedingLogCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
