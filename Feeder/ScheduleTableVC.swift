@@ -5,6 +5,9 @@
 //  Created by Jason Andrae on 3/30/16.
 //  Copyright © 2016 Jason Andrae. All rights reserved.
 //
+//  Code reference:
+//  https://developer.apple.com/library/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Lesson10.html#//apple_ref/doc/uid/TP40015214-CH14-SW1
+//
 
 import UIKit
 

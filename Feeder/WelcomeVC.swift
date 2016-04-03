@@ -95,6 +95,8 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
             (nav.topViewController as! LoginViewController).segueID = segueID
         } else if segueID == "gotoLogin" {
             (segue.destinationViewController as! LoginViewController).segueID = segueID
+        } else if segueID == "initiateSegue" {
+            (segue.destinationViewController as! InitiateFeedingVC).login = login
         }
     }
     

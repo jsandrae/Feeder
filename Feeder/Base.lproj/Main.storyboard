@@ -189,15 +189,15 @@
             <objects>
                 <tableViewController title="Feeding Schedule Table VC" id="GzN-yA-PHf" customClass="ScheduleTableVC" customModule="Feeder" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="EBe-h1-3e0">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedingScheduleTableCell" rowHeight="100" id="0ZO-ws-2ap" customClass="ScheduledFeeding" customModule="Feeder" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="600" height="100"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0ZO-ws-2ap" id="uGj-jc-hdh">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9c-vH-frx">
@@ -212,7 +212,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOi-1N-P5n">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOi-1N-P5n">
                                             <rect key="frame" x="535.5" y="39.5" width="36.5" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -240,25 +240,79 @@
                             <outlet property="delegate" destination="GzN-yA-PHf" id="RvI-4O-oAJ"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="W2W-9v-GlV"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yoC-r6-b46" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1210" y="1024"/>
+            <point key="canvasLocation" x="911" y="1689"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="KJP-et-yyE">
+            <objects>
+                <viewController id="V7D-12-oMs" customClass="InitiateFeedingVC" customModule="Feeder" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zOH-Lc-Rrb"/>
+                        <viewControllerLayoutGuide type="bottom" id="KdL-Oq-gBO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jpc-Xl-dJs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V0U-qx-Bpy">
+                                <rect key="frame" x="75" y="262" width="170" height="43"/>
+                                <state key="normal" title="Feed The Dog!" backgroundImage="Button">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="disabled" backgroundImage="disabledButton"/>
+                                <connections>
+                                    <action selector="feedButton:" destination="V7D-12-oMs" eventType="touchUpInside" id="yCF-IK-VvH"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="It's time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fd9-uN-MO8">
+                                <rect key="frame" x="46" y="197" width="228" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Fd9-uN-MO8" firstAttribute="leading" secondItem="jpc-Xl-dJs" secondAttribute="leadingMargin" constant="30" id="1PK-KI-sRv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Fd9-uN-MO8" secondAttribute="trailing" constant="30" id="Jwv-nG-BP3"/>
+                            <constraint firstItem="V0U-qx-Bpy" firstAttribute="top" secondItem="Fd9-uN-MO8" secondAttribute="bottom" constant="60" id="KPI-17-JzG"/>
+                            <constraint firstItem="V0U-qx-Bpy" firstAttribute="centerX" secondItem="jpc-Xl-dJs" secondAttribute="centerX" id="hlc-wH-ixp"/>
+                            <constraint firstItem="Fd9-uN-MO8" firstAttribute="centerX" secondItem="jpc-Xl-dJs" secondAttribute="centerX" id="jwY-Kf-Fev"/>
+                            <constraint firstItem="V0U-qx-Bpy" firstAttribute="centerY" secondItem="jpc-Xl-dJs" secondAttribute="centerY" id="wN0-nl-eGm"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="jwY-Kf-Fev"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="DsA-fu-d0a"/>
+                    <connections>
+                        <outlet property="feedbackLabel" destination="Fd9-uN-MO8" id="4y3-L1-lOD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iZR-Sd-QUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1609" y="1689"/>
         </scene>
         <!--Feeding Log Table VC-->
         <scene sceneID="amb-Mc-9pz">
             <objects>
                 <tableViewController title="Feeding Log Table VC" id="yWe-2J-eq3" customClass="FeedingLogTableVC" customModule="Feeder" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="Hc1-HV-bvF">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedingLogTableCell" rowHeight="100" id="6Iu-Fx-AB7" customClass="FeedingLogCell" customModule="Feeder" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="600" height="100"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Iu-Fx-AB7" id="7QY-zf-fei">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeB-7l-xpm">
@@ -292,10 +346,11 @@
                             <outlet property="delegate" destination="yWe-2J-eq3" id="zWK-sq-X8A"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="iho-R2-Xmi"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HEN-Yf-l7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2371" y="1024"/>
+            <point key="canvasLocation" x="2315" y="1689"/>
         </scene>
         <!--WelcomeVC-->
         <scene sceneID="lm5-dI-RiY">
@@ -347,6 +402,9 @@
                                 <state key="disabled" backgroundImage="disabledButton">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="cjx-ID-NYO" kind="show" identifier="gotoSchedule" id="5my-Y5-dEK"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPO-GF-bzd">
                                 <rect key="frame" x="75" y="268" width="170" height="43"/>
@@ -356,6 +414,9 @@
                                 <state key="disabled" backgroundImage="disabledButton">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="cjx-ID-NYO" kind="show" identifier="gotoInitiate" id="XsD-cf-WAQ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEU-34-npx">
                                 <rect key="frame" x="75" y="329" width="170" height="43"/>
@@ -365,6 +426,9 @@
                                 <state key="disabled" backgroundImage="disabledButton">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="cjx-ID-NYO" kind="show" identifier="gotoFeedingLog" id="U13-6l-7Q8"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="HungryDog" translatesAutoresizingMaskIntoConstraints="NO" id="2QF-CA-6a2">
                                 <rect key="frame" x="76" y="426" width="168" height="122"/>
@@ -409,6 +473,25 @@
             </objects>
             <point key="canvasLocation" x="1609" y="297"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="rZY-aq-MJ4">
+            <objects>
+                <tabBarController id="cjx-ID-NYO" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Dox-2v-Kt7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="GzN-yA-PHf" kind="relationship" relationship="viewControllers" id="Z3L-3v-qun"/>
+                        <segue destination="V7D-12-oMs" kind="relationship" relationship="viewControllers" id="NNt-jP-egR"/>
+                        <segue destination="yWe-2J-eq3" kind="relationship" relationship="viewControllers" id="LiV-IZ-XYd"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Jn-OY-PsR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1609" y="966"/>
+        </scene>
         <!--Settings Navigation Controller-->
         <scene sceneID="A8W-Td-bVS">
             <objects>
@@ -434,6 +517,7 @@
         <image name="disabledButton" width="170" height="43"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Qn4-sF-b1q"/>
+        <segue reference="U13-6l-7Q8"/>
+        <segue reference="52s-aH-hhX"/>
     </inferredMetricsTieBreakers>
 </document>

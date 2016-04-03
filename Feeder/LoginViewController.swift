@@ -180,7 +180,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             }
             
             if isSettings() {
-                let alertView = UIAlertController(title: "Update Settings", message: "Updating your settings will destory all previous settings. Are you sure you wish to continue?", preferredStyle: .Alert)
+                let alertView = UIAlertController(title: "Update Settings", message: "Updating your settings will destory all previous settings. \rAre you sure you wish to continue?", preferredStyle: .Alert)
                 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
                 alertView.addAction(cancelAction)
