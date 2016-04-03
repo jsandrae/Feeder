@@ -240,13 +240,13 @@
                             <outlet property="delegate" destination="GzN-yA-PHf" id="RvI-4O-oAJ"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Schedule" image="Schedule" id="W2W-9v-GlV"/>
+                    <navigationItem key="navigationItem" id="Xgf-TG-du2"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yoC-r6-b46" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="911" y="1689"/>
+            <point key="canvasLocation" x="1249" y="1689"/>
         </scene>
-        <!--Feeding-->
+        <!--Initiate FeedingVC-->
         <scene sceneID="KJP-et-yyE">
             <objects>
                 <viewController id="V7D-12-oMs" customClass="InitiateFeedingVC" customModule="Feeder" customModuleProvider="target" sceneMemberID="viewController">
@@ -290,14 +290,14 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Feeding" image="Feeding" id="DsA-fu-d0a"/>
+                    <navigationItem key="navigationItem" id="ZrR-Eb-YhV"/>
                     <connections>
                         <outlet property="feedbackLabel" destination="Fd9-uN-MO8" id="4y3-L1-lOD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iZR-Sd-QUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1609" y="1689"/>
+            <point key="canvasLocation" x="1989" y="1689"/>
         </scene>
         <!--Feeding Log Table VC-->
         <scene sceneID="amb-Mc-9pz">
@@ -346,11 +346,11 @@
                             <outlet property="delegate" destination="yWe-2J-eq3" id="zWK-sq-X8A"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="History" image="List" id="iho-R2-Xmi"/>
+                    <navigationItem key="navigationItem" id="CER-Bx-yGM"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HEN-Yf-l7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2315" y="1689"/>
+            <point key="canvasLocation" x="2374" y="1689"/>
         </scene>
         <!--WelcomeVC-->
         <scene sceneID="lm5-dI-RiY">
@@ -415,7 +415,7 @@
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="cjx-ID-NYO" kind="show" identifier="gotoInitiate" id="XsD-cf-WAQ"/>
+                                    <segue destination="cjx-ID-NYO" kind="presentation" identifier="gotoInitiate" modalTransitionStyle="coverVertical" id="XsD-cf-WAQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEU-34-npx">
@@ -483,9 +483,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="GzN-yA-PHf" kind="relationship" relationship="viewControllers" id="Z3L-3v-qun"/>
-                        <segue destination="V7D-12-oMs" kind="relationship" relationship="viewControllers" id="NNt-jP-egR"/>
-                        <segue destination="yWe-2J-eq3" kind="relationship" relationship="viewControllers" id="LiV-IZ-XYd"/>
+                        <segue destination="GMv-t3-RJ7" kind="relationship" relationship="viewControllers" id="Z3L-3v-qun"/>
+                        <segue destination="3R4-fF-0Wn" kind="relationship" relationship="viewControllers" id="NNt-jP-egR"/>
+                        <segue destination="elb-wb-SiO" kind="relationship" relationship="viewControllers" id="LiV-IZ-XYd"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Jn-OY-PsR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -510,17 +510,74 @@
             </objects>
             <point key="canvasLocation" x="2025" y="6"/>
         </scene>
+        <!--Schedule-->
+        <scene sceneID="L7j-yQ-3D9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GMv-t3-RJ7" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Schedule" image="Schedule" id="W2W-9v-GlV"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3ZA-30-ulO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GzN-yA-PHf" kind="relationship" relationship="rootViewController" id="BWW-Vy-jVM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BHh-7g-jLu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="861" y="1689"/>
+        </scene>
+        <!--Feeding-->
+        <scene sceneID="KJg-a8-vSL">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3R4-fF-0Wn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Feeding" image="Feeding" id="DsA-fu-d0a"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HOB-6i-fj4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="V7D-12-oMs" kind="relationship" relationship="rootViewController" id="Ips-7B-59g"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UQh-zg-qfh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1609" y="1689"/>
+        </scene>
+        <!--History-->
+        <scene sceneID="nI5-5e-W9w">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="elb-wb-SiO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="History" image="List" id="iho-R2-Xmi"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cUH-oD-xRh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yWe-2J-eq3" kind="relationship" relationship="rootViewController" id="7oK-0Q-VDl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="64c-gg-Ezh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2765" y="1689"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Button" width="170" height="43"/>
-        <image name="Feeding" width="266" height="266"/>
+        <image name="Feeding" width="25" height="25"/>
         <image name="HungryDog" width="2448" height="3264"/>
-        <image name="List" width="210" height="170"/>
-        <image name="Schedule" width="266" height="235"/>
+        <image name="List" width="25" height="25"/>
+        <image name="Schedule" width="25" height="25"/>
         <image name="disabledButton" width="170" height="43"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="U13-6l-7Q8"/>
+        <segue reference="XsD-cf-WAQ"/>
         <segue reference="52s-aH-hhX"/>
     </inferredMetricsTieBreakers>
 </document>
