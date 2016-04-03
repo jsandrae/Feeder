@@ -33,7 +33,10 @@ class InitiateFeedingVC: UIViewController {
     @IBAction func feedButton(sender: UIButton) {
         // Display network activity monitor to show user process is working
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-        let url = NSURL(string: login!.url)
+        // Concat path and username to given feeder URL
+        let urlString:String = login!.url + "/feed/" + login!.username
+        print(urlString)
+        let url = NSURL(string: urlString)
         // Assign data task to this session, pass saved url, perform callback handler
         dataTask = currentSession.dataTaskWithURL(url!){
             data, response, error in

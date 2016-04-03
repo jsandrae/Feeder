@@ -58,6 +58,7 @@
 		96E804A41CACB17700D8DBD6 /* FeedingLogCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedingLogCell.swift; sourceTree = "<group>"; };
 		96E804A61CAD75DB00D8DBD6 /* InitiateFeedingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitiateFeedingVC.swift; sourceTree = "<group>"; };
 		96E804A81CB15BFF00D8DBD6 /* FeedingTabBarVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedingTabBarVC.swift; sourceTree = "<group>"; };
+		96E804AA1CB199EE00D8DBD6 /* Feeder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Feeder.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +100,7 @@
 		9632982E1C96348A00A8E2A1 /* Feeder */ = {
 			isa = PBXGroup;
 			children = (
+				96E804AA1CB199EE00D8DBD6 /* Feeder.entitlements */,
 				9632982F1C96348A00A8E2A1 /* AppDelegate.swift */,
 				963298311C96348A00A8E2A1 /* LoginViewController.swift */,
 				963298331C96348A00A8E2A1 /* Main.storyboard */,
@@ -180,6 +182,12 @@
 				TargetAttributes = {
 					9632982B1C96348A00A8E2A1 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 9T2YVH37YK;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+						};
 					};
 					9632983F1C96348A00A8E2A1 = {
 						CreatedOnToolsVersion = 7.2.1;

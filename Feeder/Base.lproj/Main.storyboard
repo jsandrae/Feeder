@@ -151,7 +151,8 @@
                         <outlet property="passTextField" destination="eg5-mp-GFV" id="K1i-cY-my2"/>
                         <outlet property="urlTextField" destination="Ig5-06-uPy" id="Dud-Oc-WN1"/>
                         <outlet property="usernameLabel" destination="wSU-Qq-fEd" id="QSz-om-lE0"/>
-                        <segue destination="t28-43-mvL" kind="unwind" identifier="dismissLogin" unwindAction="unwindSegue:" id="Ajk-hS-vvx"/>
+                        <segue destination="t28-43-mvL" kind="unwind" identifier="correctLogin" unwindAction="unwindSegue:" id="Ajk-hS-vvx"/>
+                        <segue destination="t28-43-mvL" kind="unwind" identifier="confirmComplete" unwindAction="unwindSegue:" id="ssn-N7-gIk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -350,7 +351,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HEN-Yf-l7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2374" y="1689"/>
+            <point key="canvasLocation" x="2726" y="1689"/>
         </scene>
         <!--WelcomeVC-->
         <scene sceneID="lm5-dI-RiY">
@@ -565,7 +566,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="64c-gg-Ezh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2765" y="1689"/>
+            <point key="canvasLocation" x="2348" y="1689"/>
         </scene>
     </scenes>
     <resources>

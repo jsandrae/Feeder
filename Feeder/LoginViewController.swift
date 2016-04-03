@@ -50,7 +50,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         //let hasAccount = NSUserDefaults.standardUserDefaults().boolForKey("hasAccountKey")
         
         // If account loaded, store username in text field as convenience factor
-        nameTextField.text = getDatum("username")
+        if !isSetup() {
+            myLogin = loadLogin()
+            nameTextField.text = myLogin?.username
+        }
         
         // If logging in
         if isLogin() {
@@ -81,7 +84,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             loginButton.enabled = false
             // Change informational text
             createInfoLabel.text = "Edit any field you wish to change."
-            urlTextField.text = getDatum("url")
+            urlTextField.text = myLogin!.url
             updateName()
         }
         
@@ -141,9 +144,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         checkValidInputs()
     }
     
-    
     /**
-     * Function to disable Save button until all text fields have been entered
+     * Function to disable login button until all text fields have been entered
      */
     func textFieldDidBeginEditing(textField: UITextField) {
         loginButton.enabled = false
@@ -161,7 +163,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         removeAllResponders()
         let isValid = textFieldIsFull(true)
         if isValid {
-            performLogin(sender.tag)
+            performLogin()
         }
     }
     
@@ -169,7 +171,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func performLogin(senderID:Int){
+    func performLogin(){
         
         // Find current status of button and perform actions depending on if it's create or login
         if isSetup() || isSettings() {
@@ -199,7 +201,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         } else if isLogin() { // elseif login button
             // Compare typed user information to saved password in keychain
             if checkLogin(nameTextField.text!, password: passTextField.text!) {
-                performSegueWithIdentifier("dismissLogin", sender: self)
+                performSegueWithIdentifier("correctLogin", sender: self)
             } else {
                 // Given password doesn't match saved password: clear pass text field and alert user
                 passTextField.text = ""
@@ -216,12 +218,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     
     // MARK: Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let segueID = segue.identifier!
-        if segueID == "dismissLogin" {
-            let newLogin = LoginModel(username: getDatum("username")!, url: getDatum("url")!)
-            //let nav = segue.destinationViewController as! UINavigationController
-            (segue.destinationViewController as! WelcomeVC).login = newLogin
-        }
+        //let segueID = segue.identifier!
+        //if segueID == "correctLogin" {
+            (segue.destinationViewController as! WelcomeVC).login = myLogin
+        
     }
 
     // MARK: Validation
@@ -229,7 +229,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     func checkLogin(username: String, password: String ) -> Bool {
         // Compare entered username and passwords to keychain user and pass
         if password == MyKeychainWrapper.myObjectForKey("v_Data") as? String &&
-            username == getDatum("username") {
+            username == myLogin!.username {
             return true
         } else {
             return false
@@ -294,14 +294,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     }
     
     // MARK: Helper Methods
-    func getDatum(key:String) -> String? {
-        return NSUserDefaults.standardUserDefaults().valueForKey(key) as? String
-    }
-    
-    func setDatum(key key:String, datum:String){
-        NSUserDefaults.standardUserDefaults().setValue(datum, forKey: key)
-    }
-    
     func removeAllResponders(){
         nameTextField.resignFirstResponder()
         passTextField.resignFirstResponder()
@@ -331,12 +323,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     }
     
     func confirmChange() {
-        // If user doesn't have local login key, add username to local status object
-        let hasAccountKey = NSUserDefaults.standardUserDefaults().boolForKey("hasAccountKey")
-        if hasAccountKey == false {
-            setDatum(key: "username", datum: nameTextField.text!)
-            setDatum(key: "url", datum: urlTextField.text!)
+        // If setup, create new login with given information
+        if isSetup() {
+            myLogin = LoginModel(username: nameTextField.text!, url: urlTextField.text!)!
+        } else {
+            // Is settings change, just update login information
+            myLogin!.username =  nameTextField.text!
+            myLogin!.url = urlTextField.text!
         }
+        saveLogin()
         
         // Store password in keychain for this user
         MyKeychainWrapper.mySetObject(passTextField.text, forKey:kSecValueData)
@@ -344,10 +339,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         // Change state of login key to true and change button to login for future
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasAccountKey")
         NSUserDefaults.standardUserDefaults().synchronize()
-        loginButton.tag = loginButtonTag
+        //loginButton.tag = loginButtonTag
         
         // Dismiss this view
-        performSegueWithIdentifier("dismissLogin", sender: self)
+        performSegueWithIdentifier("confirmComplete", sender: self)
+    }
+    
+    // MARK: NSCoding
+    func saveLogin(){
+        let isSucessfulSave = NSKeyedArchiver.archiveRootObject(myLogin!, toFile: LoginModel.ArchiveURL.path!)
+        if !isSucessfulSave {
+            print("failed to save feedings")
+        }
+    }
+    
+    func loadLogin() -> LoginModel? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(LoginModel.ArchiveURL.path!) as? LoginModel
     }
 }
 
