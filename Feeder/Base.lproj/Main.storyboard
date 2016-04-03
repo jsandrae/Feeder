@@ -188,32 +188,32 @@
         <scene sceneID="1Q9-AI-cd9">
             <objects>
                 <tableViewController title="Feeding Schedule Table VC" id="GzN-yA-PHf" customClass="ScheduleTableVC" customModule="Feeder" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="EBe-h1-3e0">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="28" sectionFooterHeight="28" id="EBe-h1-3e0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedingScheduleTableCell" rowHeight="100" id="0ZO-ws-2ap" customClass="ScheduledFeeding" customModule="Feeder" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="320" height="100"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedingScheduleTableCell" rowHeight="65" id="0ZO-ws-2ap" customClass="ScheduledFeeding" customModule="Feeder" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0ZO-ws-2ap" id="uGj-jc-hdh">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="64.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9c-vH-frx">
-                                            <rect key="frame" x="78" y="39.5" width="38" height="21"/>
+                                            <rect key="frame" x="78" y="22" width="38" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Szb-sc-033">
-                                            <rect key="frame" x="28" y="39.5" width="38" height="21"/>
+                                            <rect key="frame" x="28" y="22" width="38" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOi-1N-P5n">
-                                            <rect key="frame" x="535.5" y="39.5" width="36.5" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOi-1N-P5n">
+                                            <rect key="frame" x="255.5" y="22" width="36.5" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -240,13 +240,13 @@
                             <outlet property="delegate" destination="GzN-yA-PHf" id="RvI-4O-oAJ"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="W2W-9v-GlV"/>
+                    <tabBarItem key="tabBarItem" title="Schedule" image="Schedule" id="W2W-9v-GlV"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yoC-r6-b46" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="911" y="1689"/>
         </scene>
-        <!--Item-->
+        <!--Feeding-->
         <scene sceneID="KJP-et-yyE">
             <objects>
                 <viewController id="V7D-12-oMs" customClass="InitiateFeedingVC" customModule="Feeder" customModuleProvider="target" sceneMemberID="viewController">
@@ -290,7 +290,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="DsA-fu-d0a"/>
+                    <tabBarItem key="tabBarItem" title="Feeding" image="Feeding" id="DsA-fu-d0a"/>
                     <connections>
                         <outlet property="feedbackLabel" destination="Fd9-uN-MO8" id="4y3-L1-lOD"/>
                     </connections>
@@ -303,19 +303,19 @@
         <scene sceneID="amb-Mc-9pz">
             <objects>
                 <tableViewController title="Feeding Log Table VC" id="yWe-2J-eq3" customClass="FeedingLogTableVC" customModule="Feeder" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="Hc1-HV-bvF">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="28" sectionFooterHeight="28" id="Hc1-HV-bvF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedingLogTableCell" rowHeight="100" id="6Iu-Fx-AB7" customClass="FeedingLogCell" customModule="Feeder" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="320" height="100"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedingLogTableCell" rowHeight="65" id="6Iu-Fx-AB7" customClass="FeedingLogCell" customModule="Feeder" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Iu-Fx-AB7" id="7QY-zf-fei">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="64.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeB-7l-xpm">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeB-7l-xpm">
                                             <rect key="frame" x="28" y="39" width="36" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -346,7 +346,7 @@
                             <outlet property="delegate" destination="yWe-2J-eq3" id="zWK-sq-X8A"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="iho-R2-Xmi"/>
+                    <tabBarItem key="tabBarItem" title="History" image="List" id="iho-R2-Xmi"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HEN-Yf-l7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -473,10 +473,10 @@
             </objects>
             <point key="canvasLocation" x="1609" y="297"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Feeding Tab BarVC-->
         <scene sceneID="rZY-aq-MJ4">
             <objects>
-                <tabBarController id="cjx-ID-NYO" sceneMemberID="viewController">
+                <tabBarController id="cjx-ID-NYO" customClass="FeedingTabBarVC" customModule="Feeder" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Dox-2v-Kt7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -513,7 +513,10 @@
     </scenes>
     <resources>
         <image name="Button" width="170" height="43"/>
+        <image name="Feeding" width="266" height="266"/>
         <image name="HungryDog" width="2448" height="3264"/>
+        <image name="List" width="210" height="170"/>
+        <image name="Schedule" width="266" height="235"/>
         <image name="disabledButton" width="170" height="43"/>
     </resources>
     <inferredMetricsTieBreakers>
