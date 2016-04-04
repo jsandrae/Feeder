@@ -66,7 +66,7 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
     }
     
     /**
-     * Function for when App first loads
+     * Function for anytime view is displayed
      */
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(false)
@@ -106,9 +106,13 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
     }
     
     @IBAction func unwindSegue(segue: UIStoryboardSegue){
-        isAuthenticated = true
-        view.alpha = 1.0
-        usernameLabel.text = "the Dog \(login!.username)!"
+        if segue.identifier == "resetData"{
+            // 
+        } else {
+            isAuthenticated = true
+            view.alpha = 1.0
+            usernameLabel.text = "the Dog \(login!.username)!"
+        }
     }
     
     // MARK: Helper Functions

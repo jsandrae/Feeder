@@ -4,6 +4,7 @@
 //
 //  Created by Jason Andrae on 3/13/16.
 //  Copyright © 2016 Jason Andrae. All rights reserved.
+//  Some code heavily modified from Tim Mitra: https://www.raywenderlich.com/92667/securing-ios-data-keychain-touch-id-1password
 //
 
 import UIKit
@@ -23,6 +24,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var createInfoLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var resetButton: UIButton!
     
     // State of loginButton (Login or Create)
     let createLoginButtonTag = 0
@@ -46,14 +48,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         
         super.viewDidLoad()
         
-        // Load account from coredata
-        //let hasAccount = NSUserDefaults.standardUserDefaults().boolForKey("hasAccountKey")
-        
         // If account loaded, store username in text field as convenience factor
         if !isSetup() {
             myLogin = loadLogin()
             nameTextField.text = myLogin?.username
         }
+        
+        // Hide reset button for all views but settings
+        resetButton.hidden = true
         
         // If logging in
         if isLogin() {
@@ -86,6 +88,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             createInfoLabel.text = "Edit any field you wish to change."
             urlTextField.text = myLogin!.url
             updateName()
+            resetButton.hidden = false
         }
         
         
@@ -167,6 +170,29 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         }
     }
     
+    @IBAction func resetData(sender: UIButton) {
+        // Remove UserDefault data
+        let appDomain = NSBundle.mainBundle().bundleIdentifier!
+        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain)
+        // Removed other saved object data
+        let filePaths = [LoginModel.ArchiveURL.path!, FeedingModel.ArchiveURL.path!] // Array of all current model objects to allow for easy future additions
+        for path in filePaths {
+            let exists = NSFileManager.defaultManager().fileExistsAtPath(path)
+            if exists {
+                do {
+                    try NSFileManager.defaultManager().removeItemAtPath(path)
+                }catch let error as NSError {
+                    print("error: \(error.localizedDescription)")
+                }
+            }
+        }
+        // Remove Keychain data
+        MyKeychainWrapper.mySetObject("", forKey:kSecValueData)
+        MyKeychainWrapper.writeToKeychain()
+        performSegueWithIdentifier("resetData", sender: self)
+    }
+    
+    
     @IBAction func cancelButton(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -182,7 +208,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             }
             
             if isSettings() {
-                let alertView = UIAlertController(title: "Update Settings", message: "Updating your settings will destory all previous settings. \rAre you sure you wish to continue?", preferredStyle: .Alert)
+                let alertView = UIAlertController(title: "Update Settings", message: "Updating your settings will destroy all previous settings. \rAre you sure you wish to continue?", preferredStyle: .Alert)
                 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
                 alertView.addAction(cancelAction)
@@ -198,7 +224,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             } else {
                 confirmChange()
             }
-        } else if isLogin() { // elseif login button
+        } else if isLogin() { // else if login button
             // Compare typed user information to saved password in keychain
             if checkLogin(nameTextField.text!, password: passTextField.text!) {
                 performSegueWithIdentifier("correctLogin", sender: self)
@@ -218,10 +244,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     
     // MARK: Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        //let segueID = segue.identifier!
-        //if segueID == "correctLogin" {
-            (segue.destinationViewController as! WelcomeVC).login = myLogin
-        
+        let destination = (segue.destinationViewController as! WelcomeVC)
+        destination.login = myLogin
+        // If we reset the data, remove authentication flag
+        if segue.identifier! == "resetData" {
+            destination.isAuthenticated = false
+        }
     }
 
     // MARK: Validation
@@ -266,7 +294,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
                 return false;
             }
         }
-        // All tests have suceeded, everything is valid
+        // All tests have succeeded, everything is valid
         return true
     }
     
@@ -347,8 +375,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     
     // MARK: NSCoding
     func saveLogin(){
-        let isSucessfulSave = NSKeyedArchiver.archiveRootObject(myLogin!, toFile: LoginModel.ArchiveURL.path!)
-        if !isSucessfulSave {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(myLogin!, toFile: LoginModel.ArchiveURL.path!)
+        if !isSuccessfulSave {
             print("failed to save feedings")
         }
     }

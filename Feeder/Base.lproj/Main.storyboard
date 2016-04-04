@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nr1-E0-rmw" userLabel="Title Stack View">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nr1-E0-rmw" userLabel="Title Stack View">
                                 <rect key="frame" x="46" y="74" width="228" height="65"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="It's Time to Feed" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="1" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yiD-1h-BhF">
@@ -46,8 +46,8 @@
                                     <rect key="frame" x="2" y="0.0" width="198" height="65"/>
                                 </variation>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXh-Sy-thn">
-                                <rect key="frame" x="75.5" y="337" width="170" height="43"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXh-Sy-thn">
+                                <rect key="frame" x="75" y="337" width="170" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RXh-Sy-thn" secondAttribute="height" multiplier="166:61" id="Gsg-Cs-2IC"/>
                                 </constraints>
@@ -72,7 +72,7 @@
                                     <action selector="loginAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o63-wc-xR4"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="czs-Hc-tuy" userLabel="TextField Stack View">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="czs-Hc-tuy" userLabel="TextField Stack View">
                                 <rect key="frame" x="46" y="175" width="228" height="138"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="your nickname" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="76y-7n-6Wh">
@@ -107,7 +107,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Ig5-06-uPy" secondAttribute="trailing" id="yGZ-4a-l8U"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Log in with your username and password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7l-ZG-C12">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in with your username and password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7l-ZG-C12">
                                 <rect key="frame" x="46" y="392" width="228" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -116,15 +116,26 @@
                                     <rect key="frame" x="0.0" y="0.0" width="202" height="21"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mbv-Mg-WMw">
+                                <rect key="frame" x="75" y="513" width="170" height="43"/>
+                                <state key="normal" title="Reset Data" backgroundImage="Button">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lTh-38-msH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="f7l-ZG-C12" firstAttribute="top" secondItem="RXh-Sy-thn" secondAttribute="bottom" constant="12" id="2hL-qk-2Bw"/>
+                            <constraint firstItem="Mbv-Mg-WMw" firstAttribute="top" secondItem="f7l-ZG-C12" secondAttribute="bottom" constant="100" id="4lC-t3-vM0"/>
                             <constraint firstItem="czs-Hc-tuy" firstAttribute="top" secondItem="nr1-E0-rmw" secondAttribute="bottom" constant="36" id="CvU-Ow-j9F"/>
                             <constraint firstItem="f7l-ZG-C12" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="EVH-fg-JB7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="f7l-ZG-C12" secondAttribute="trailing" constant="30" id="OFo-QB-vPh"/>
                             <constraint firstItem="RXh-Sy-thn" firstAttribute="top" secondItem="czs-Hc-tuy" secondAttribute="bottom" constant="24" id="bJl-sr-fk5"/>
+                            <constraint firstItem="Mbv-Mg-WMw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="btB-fw-ffi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nr1-E0-rmw" secondAttribute="trailing" constant="30" id="dBh-WB-KO1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="czs-Hc-tuy" secondAttribute="trailing" constant="30" id="g4p-Sb-yxd"/>
                             <constraint firstItem="nr1-E0-rmw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="54" id="kdG-gW-Bck"/>
@@ -149,10 +160,12 @@
                         <outlet property="loginButton" destination="RXh-Sy-thn" id="0tP-V2-9I8"/>
                         <outlet property="nameTextField" destination="76y-7n-6Wh" id="NLi-kr-1kc"/>
                         <outlet property="passTextField" destination="eg5-mp-GFV" id="K1i-cY-my2"/>
+                        <outlet property="resetButton" destination="Mbv-Mg-WMw" id="aD0-si-rIF"/>
                         <outlet property="urlTextField" destination="Ig5-06-uPy" id="Dud-Oc-WN1"/>
                         <outlet property="usernameLabel" destination="wSU-Qq-fEd" id="QSz-om-lE0"/>
                         <segue destination="t28-43-mvL" kind="unwind" identifier="correctLogin" unwindAction="unwindSegue:" id="Ajk-hS-vvx"/>
                         <segue destination="t28-43-mvL" kind="unwind" identifier="confirmComplete" unwindAction="unwindSegue:" id="ssn-N7-gIk"/>
+                        <segue destination="t28-43-mvL" kind="unwind" identifier="resetData" unwindAction="unwindSegue:" id="t42-Rd-wGs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -396,7 +409,7 @@
                                     </mask>
                                 </variation>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dga-Ps-M6u">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dga-Ps-M6u">
                                 <rect key="frame" x="75" y="207" width="170" height="43"/>
                                 <state key="normal" title="Schedule Feeding" backgroundImage="Button">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -408,19 +421,7 @@
                                     <segue destination="cjx-ID-NYO" kind="show" identifier="gotoSchedule" id="5my-Y5-dEK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPO-GF-bzd">
-                                <rect key="frame" x="75" y="268" width="170" height="43"/>
-                                <state key="normal" title="Initiate Feeding" backgroundImage="Button">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <state key="disabled" backgroundImage="disabledButton">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="cjx-ID-NYO" kind="presentation" identifier="gotoInitiate" modalTransitionStyle="coverVertical" id="XsD-cf-WAQ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEU-34-npx">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEU-34-npx">
                                 <rect key="frame" x="75" y="329" width="170" height="43"/>
                                 <state key="normal" title="Feeding Log" backgroundImage="Button">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -435,6 +436,18 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="HungryDog" translatesAutoresizingMaskIntoConstraints="NO" id="2QF-CA-6a2">
                                 <rect key="frame" x="76" y="426" width="168" height="122"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPO-GF-bzd">
+                                <rect key="frame" x="75" y="268" width="170" height="43"/>
+                                <state key="normal" title="Initiate Feeding" backgroundImage="Button">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="disabled" backgroundImage="disabledButton">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="cjx-ID-NYO" kind="presentation" identifier="gotoInitiate" modalTransitionStyle="coverVertical" id="XsD-cf-WAQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
