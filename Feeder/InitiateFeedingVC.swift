@@ -66,6 +66,11 @@ class InitiateFeedingVC: UIViewController {
         // Since tasks begin in a suspended state, start task
         dataTask?.resume()
     }
+    
+    @IBAction func dismissCurrentView(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 
     /*
     // MARK: - Navigation

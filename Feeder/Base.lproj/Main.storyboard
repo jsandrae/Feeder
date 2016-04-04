@@ -254,7 +254,13 @@
                             <outlet property="delegate" destination="GzN-yA-PHf" id="RvI-4O-oAJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Xgf-TG-du2"/>
+                    <navigationItem key="navigationItem" id="Xgf-TG-du2">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="QsF-0h-EUa">
+                            <connections>
+                                <action selector="dismissView:" destination="GzN-yA-PHf" id="QPW-1Q-uFF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yoC-r6-b46" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -304,7 +310,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="ZrR-Eb-YhV"/>
+                    <navigationItem key="navigationItem" id="ZrR-Eb-YhV">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="BgI-6v-OA2">
+                            <connections>
+                                <action selector="dismissCurrentView:" destination="V7D-12-oMs" id="n6H-K8-eR8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="feedbackLabel" destination="Fd9-uN-MO8" id="4y3-L1-lOD"/>
                         <outlet property="feedingButton" destination="V0U-qx-Bpy" id="bnV-kV-hAR"/>
@@ -361,7 +373,13 @@
                             <outlet property="delegate" destination="yWe-2J-eq3" id="zWK-sq-X8A"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="CER-Bx-yGM"/>
+                    <navigationItem key="navigationItem" id="CER-Bx-yGM">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="cw1-Jc-60V">
+                            <connections>
+                                <action selector="dismissView:" destination="yWe-2J-eq3" id="Myp-N0-1v5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HEN-Yf-l7V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

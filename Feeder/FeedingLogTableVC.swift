@@ -77,6 +77,12 @@ class FeedingLogTableVC: UITableViewController {
         // Returning false to prevent users from explicitly rearranging table
         return false
     }
+    
+    // MARK: Actions
+    @IBAction func dismissView(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 
     /*
     // MARK: Navigation
