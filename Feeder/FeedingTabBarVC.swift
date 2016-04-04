@@ -9,6 +9,8 @@
 import UIKit
 
 class FeedingTabBarVC: UITabBarController {
+    
+    var tabLogin: LoginModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()

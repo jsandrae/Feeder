@@ -1,12 +1,13 @@
 //
-//  FeedingLog.swift
+//  FeedingLogTableVC.swift
 //  Feeder
 //
 //  Created by Jason Andrae on 3/30/16.
 //  Copyright © 2016 Jason Andrae. All rights reserved.
 //
 //  Code reference:
-//  https://developer.apple.com/library/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Lesson10.html#//apple_ref/doc/uid/TP40015214-CH14-SW1
+//  https://developer.apple.com/library/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Lesson10.html#//apple_ref/doc/uid/TP40015214-CH14-SW1,
+//  Ken Toh: https://www.raywenderlich.com/110458/nsurlsession-tutorial-getting-started
 //
 
 import UIKit
@@ -15,6 +16,9 @@ class FeedingLogTableVC: UITableViewController {
     
     // MARK: Properties
     var feedings = [FeedingModel]()
+    var login: LoginModel?
+    let currentSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+    var dataTask: NSURLSessionDataTask?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +26,12 @@ class FeedingLogTableVC: UITableViewController {
         if let savedFeedings = loadFeedings(){
             feedings += savedFeedings
         }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        let tabBarVC = self.tabBarController as! FeedingTabBarVC
+        login = tabBarVC.tabLogin
+        getLog()
     }
 
     override func didReceiveMemoryWarning() {
@@ -78,7 +88,57 @@ class FeedingLogTableVC: UITableViewController {
     }
     */
     
-    // MARK: getJSON
+    // MARK: getLog
+    func getLog(){
+        // Display network activity monitor to show user process is working
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        let urlString:String = "http://"+login!.url + "/log"
+        print(urlString)
+        let url = NSURL(string: urlString)
+        // Assign data task to this session, pass saved url, perform callback handler
+        dataTask = currentSession.dataTaskWithURL(url!){
+            data, response, error in
+            // Dismiss network activity monitor once asynchronous response received
+            dispatch_async(dispatch_get_main_queue()) {
+                // if error returned, print error
+                if let receivedError = error {
+                    print (receivedError.localizedDescription)
+                    self.title = "Network Error"
+                } else if let httpResponse = response as? NSHTTPURLResponse {
+                    // If received positive response, parse data
+                    if httpResponse.statusCode == 200 {
+                        self.title = "Feeding Log"
+                        let feedingLog = self.parseJSON(data!)
+                        self.feedings = feedingLog
+                    }
+                }
+                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                self.tableView.reloadData()
+            }
+        }
+        // Since tasks begin in a suspended state, start task
+        dataTask?.resume()
+    }
+    
+    func parseJSON(data:NSData) -> [FeedingModel]{
+        var feedingLog = [FeedingModel]()
+        // Parse data and store in dictionary
+        do {
+            let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+            if let entries = json["log"] as? [[String:AnyObject]] {
+                for entry in entries {
+                    if let timestamp = entry["timestamp"] as? String {
+                        if let username = entry["username"] as? String {
+                            feedingLog.append(FeedingModel(username: username, date: timestamp)!)
+                        }
+                    }
+                }
+            }
+        } catch{
+            print("Error with JSON: \(error)")
+        }
+        return feedingLog
+    }
     
     // MARK NSCoding
     func saveFeedings(){
