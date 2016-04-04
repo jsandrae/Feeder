@@ -16,11 +16,13 @@ class InitiateFeedingVC: UIViewController {
     var dataTask: NSURLSessionDataTask?
     
     @IBOutlet weak var feedbackLabel: UILabel!
+    @IBOutlet weak var feedingButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         print(login)
-
+        feedingButton.enabled = true
+        feedbackLabel.text = "It's time"
         // Do any additional setup after loading the view.
     }
 
@@ -33,8 +35,10 @@ class InitiateFeedingVC: UIViewController {
     @IBAction func feedButton(sender: UIButton) {
         // Display network activity monitor to show user process is working
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        self.feedbackLabel.text = "Feeding sent, waiting on response"
+        feedingButton.enabled = false
         // Concat path and username to given feeder URL
-        let urlString:String = login!.url + "/feed/" + login!.username
+        let urlString:String = "http://"+login!.url + "/feed/" + login!.username
         print(urlString)
         let url = NSURL(string: urlString)
         // Assign data task to this session, pass saved url, perform callback handler
@@ -43,15 +47,16 @@ class InitiateFeedingVC: UIViewController {
             // Dismiss network activity monitor once asynchronous response received
             dispatch_async(dispatch_get_main_queue()) {
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-            }
-            // if error returned, print error
-            if let receivedError = error {
-                print (receivedError.localizedDescription)
-                self.feedbackLabel.text = "Uh oh, something went wrong. \rTry again in a few minutes."
-            } else if let httpResponse = response as? NSHTTPURLResponse {
-                // If received positive response, update label to relay info to user
-                if httpResponse.statusCode == 200 {
-                    self.feedbackLabel.text = "Sucessful feeding. Dog is grateful"
+                // if error returned, print error
+                if let receivedError = error {
+                    print (receivedError.localizedDescription)
+                    self.feedbackLabel.text = "Uh oh, something went wrong. \rTry again in a few minutes."
+                } else if let httpResponse = response as? NSHTTPURLResponse {
+                    // If received positive response, update label to relay info to user
+                    if httpResponse.statusCode == 200 {
+                        self.feedbackLabel.text = "Sucessful feeding. Dog is grateful"
+                        //feedingButton
+                    }
                 }
             }
         }

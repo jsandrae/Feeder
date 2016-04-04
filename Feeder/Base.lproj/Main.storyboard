@@ -294,6 +294,7 @@
                     <navigationItem key="navigationItem" id="ZrR-Eb-YhV"/>
                     <connections>
                         <outlet property="feedbackLabel" destination="Fd9-uN-MO8" id="4y3-L1-lOD"/>
+                        <outlet property="feedingButton" destination="V0U-qx-Bpy" id="bnV-kV-hAR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iZR-Sd-QUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
