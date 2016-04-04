@@ -14,6 +14,7 @@ class InitiateFeedingVC: UIViewController {
     let currentSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
     var login: LoginModel?
     var dataTask: NSURLSessionDataTask?
+    var isReload: Bool?
     
     @IBOutlet weak var feedbackLabel: UILabel!
     @IBOutlet weak var feedingButton: UIButton!
@@ -21,9 +22,13 @@ class InitiateFeedingVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(login)
+    }
+    
+    // Adding these functions to DidAppear allows view to be reset upon return
+    override func viewDidAppear(animated: Bool) {
         feedingButton.enabled = true
         feedbackLabel.text = "It's time"
-        // Do any additional setup after loading the view.
+        isReload = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,7 +60,6 @@ class InitiateFeedingVC: UIViewController {
                     // If received positive response, update label to relay info to user
                     if httpResponse.statusCode == 200 {
                         self.feedbackLabel.text = "Sucessful feeding. Dog is grateful"
-                        //feedingButton
                     }
                 }
             }
