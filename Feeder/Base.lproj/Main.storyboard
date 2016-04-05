@@ -30,7 +30,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="198" height="33"/>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" misplaced="YES" text="the Dog!" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="1" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wSU-Qq-fEd">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" misplaced="YES" text="Maesy!" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="1" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wSU-Qq-fEd">
                                         <rect key="frame" x="0.0" y="33" width="228" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                         <nil key="highlightedColor"/>
@@ -408,8 +408,8 @@
                                             <rect key="frame" x="21" y="0.0" width="198" height="33"/>
                                         </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="the Dog " textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="1" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OWy-3r-tRO">
-                                        <rect key="frame" x="63" y="33" width="103" height="33"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Maesy" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="1" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OWy-3r-tRO">
+                                        <rect key="frame" x="75" y="33" width="80" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                         <nil key="highlightedColor"/>
                                         <variation key="heightClass=compact-widthClass=compact" misplaced="YES">

@@ -76,7 +76,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             // Change text field return key
             passTextField.returnKeyType = UIReturnKeyType.Next
             // Change label text
-            createInfoLabel.text = "Create username and password. \rSpecify feeder's URL."
+            //createInfoLabel.text = "Create username and password. \rSpecify feeder's URL."
+            createInfoLabel.text = "Create username and password. \rFor feeder's url, type:\r\"feeder.local:5000\"."
         }
         
         // Change state for settings edit
@@ -89,6 +90,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             urlTextField.text = myLogin!.url
             updateName()
             resetButton.hidden = false
+            createInfoLabel.text = "Change username and password. \rFor feeder's url, change to:\r\"feeder.local:5000\""
         }
         
         
@@ -343,7 +345,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     }
     
     func updateName() {
-        usernameLabel.text = "the Dog \(nameTextField.text!)!"
+        usernameLabel.text = "Maesy \(nameTextField.text!)!"
     }
     
     func confirmHelper(_:UIAlertAction){

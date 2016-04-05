@@ -58,7 +58,7 @@ class InitiateFeedingVC: UIViewController {
                 } else if let httpResponse = response as? NSHTTPURLResponse {
                     // If received positive response, update label to relay info to user
                     if httpResponse.statusCode == 200 {
-                        self.feedbackLabel.text = "Successful feeding. \rDog is grateful."
+                        self.feedbackLabel.text = "Successful feeding. \rMaesy is grateful."
                     }
                 }
             }
