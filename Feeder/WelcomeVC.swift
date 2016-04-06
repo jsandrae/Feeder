@@ -38,6 +38,10 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
         
         // Hide view until return from login view
         view.alpha = 0
+        
+        let bimage = UIImage(named: "HungryDog")
+        let bImageView = UIImageView(image: bimage)
+        self.view.addSubview(bImageView)
     }
     
     /**
@@ -119,6 +123,16 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
         if !isAuthenticated {
             self.performSegueWithIdentifier("gotoLogin", sender: self)
         }
+    }
+    
+    /**
+     * Function to randomly add an image to imageView
+     */
+    func showMaesy() {
+        // Create array of image names
+        //let pictureList = [
+            
+        //]
     }
 
 }
