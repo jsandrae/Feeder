@@ -51,16 +51,10 @@
                         <constraints>
                             <constraint firstItem="T6T-Wl-ei7" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="30" id="9tz-qm-3MQ"/>
                             <constraint firstItem="T6T-Wl-ei7" firstAttribute="top" secondItem="kSl-r3-LmC" secondAttribute="bottom" constant="72" id="Cu3-eL-9J6"/>
-                            <constraint firstItem="T6T-Wl-ei7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="LOI-PQ-tfS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="T6T-Wl-ei7" secondAttribute="trailing" constant="30" id="f20-wz-BW3"/>
                             <constraint firstItem="kSl-r3-LmC" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-150" id="sgK-NH-EGK"/>
                             <constraint firstItem="kSl-r3-LmC" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="zd3-tO-bwJ"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="LOI-PQ-tfS"/>
-                            </mask>
-                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -69,6 +63,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Bouncer" width="370" height="426"/>
+        <image name="Bouncer" width="741" height="852"/>
     </resources>
 </document>

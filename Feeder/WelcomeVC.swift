@@ -23,10 +23,7 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
     
     // Buttons and Labels
     @IBOutlet weak var usernameLabel: UILabel!
-    
-    
-    // Properties
-    
+    @IBOutlet weak var dogPhoto: UIImageView!
     
     // Objects
     var login: LoginModel?
@@ -38,10 +35,8 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
         
         // Hide view until return from login view
         view.alpha = 0
-        
-        let bimage = UIImage(named: "HungryDog")
-        let bImageView = UIImageView(image: bimage)
-        self.view.addSubview(bImageView)
+        //let dog = UIImage(named: "DerpDog")
+        //dogPhoto.image = dog
     }
     
     /**
@@ -68,6 +63,7 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(false)
         self.showLoginView()
+        //showMaesy()
     }
 
     /**
@@ -130,9 +126,17 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
      */
     func showMaesy() {
         // Create array of image names
-        //let pictureList = [
-            
-        //]
+        let pictureList = [
+            "Bouncer",
+            "DerpDog",
+            "HappyDog",
+            "HungryDog",
+            "LongingDog",
+            "ShaggyDog"
+        ]
+        
+        let randInt = Int(arc4random_uniform(UInt32(pictureList.count)))
+        dogPhoto.image = UIImage(named: "DerpDog")
     }
 
 }
