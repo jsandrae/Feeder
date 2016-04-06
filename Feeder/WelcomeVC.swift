@@ -35,8 +35,6 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
         
         // Hide view until return from login view
         view.alpha = 0
-        //let dog = UIImage(named: "DerpDog")
-        //dogPhoto.image = dog
     }
     
     /**
@@ -63,7 +61,7 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(false)
         self.showLoginView()
-        //showMaesy()
+        showMaesy()
     }
 
     /**
@@ -136,7 +134,7 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
         ]
         
         let randInt = Int(arc4random_uniform(UInt32(pictureList.count)))
-        dogPhoto.image = UIImage(named: "DerpDog")
+        dogPhoto.image = UIImage(named: pictureList[randInt])
     }
 
 }
