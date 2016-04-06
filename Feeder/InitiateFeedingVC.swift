@@ -59,6 +59,8 @@ class InitiateFeedingVC: UIViewController {
                     // If received positive response, update label to relay info to user
                     if httpResponse.statusCode == 200 {
                         self.feedbackLabel.text = "Successful feeding. \rMaesy is grateful."
+                        self.feedingButton.enabled = true
+                        self.feedingButton.setTitle("Feed again?", forState: UIControlState.Normal)
                     }
                 }
             }

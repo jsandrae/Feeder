@@ -101,6 +101,9 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
             if segueID == "gotoInitiate" {
                 let nav = tabBar.viewControllers![1] as! UINavigationController
                 tabBar.selectedViewController = nav
+            } else if segueID == "gotoFeedingLog" {
+                let nav = tabBar.viewControllers![2] as! UINavigationController
+                tabBar.selectedViewController = nav
             }
         }
     }

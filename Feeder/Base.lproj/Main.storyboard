@@ -78,7 +78,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="your nickname" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="76y-7n-6Wh">
                                         <rect key="frame" x="0.0" y="0.0" width="228" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eg5-mp-GFV">
                                         <rect key="frame" x="0.0" y="36" width="228" height="30"/>
@@ -117,7 +117,7 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mbv-Mg-WMw">
-                                <rect key="frame" x="75" y="513" width="170" height="43"/>
+                                <rect key="frame" x="75" y="613" width="170" height="43"/>
                                 <state key="normal" title="Reset Data" backgroundImage="Button">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -130,7 +130,7 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="f7l-ZG-C12" firstAttribute="top" secondItem="RXh-Sy-thn" secondAttribute="bottom" constant="12" id="2hL-qk-2Bw"/>
-                            <constraint firstItem="Mbv-Mg-WMw" firstAttribute="top" secondItem="f7l-ZG-C12" secondAttribute="bottom" constant="100" id="4lC-t3-vM0"/>
+                            <constraint firstItem="Mbv-Mg-WMw" firstAttribute="top" secondItem="f7l-ZG-C12" secondAttribute="bottom" constant="200" id="4lC-t3-vM0"/>
                             <constraint firstItem="czs-Hc-tuy" firstAttribute="top" secondItem="nr1-E0-rmw" secondAttribute="bottom" constant="36" id="CvU-Ow-j9F"/>
                             <constraint firstItem="f7l-ZG-C12" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="EVH-fg-JB7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="f7l-ZG-C12" secondAttribute="trailing" constant="30" id="OFo-QB-vPh"/>
@@ -581,11 +581,11 @@
             </objects>
             <point key="canvasLocation" x="1609" y="1689"/>
         </scene>
-        <!--History-->
+        <!--Feeding Log-->
         <scene sceneID="nI5-5e-W9w">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="elb-wb-SiO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="History" image="List" id="iho-R2-Xmi"/>
+                    <tabBarItem key="tabBarItem" title="Feeding Log" image="List" id="iho-R2-Xmi"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cUH-oD-xRh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

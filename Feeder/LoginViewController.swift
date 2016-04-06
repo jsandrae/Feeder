@@ -69,6 +69,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             createInfoLabel.text = "Log in with username and password"
             isAuthenticated = true
             updateName()
+            resetButton.hidden = false
         } else { // Else, change button to create account, unhide account creation label
             // Change button attributes
             loginButton.setTitle("Create", forState: UIControlState.Normal)
@@ -77,7 +78,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             passTextField.returnKeyType = UIReturnKeyType.Next
             // Change label text
             //createInfoLabel.text = "Create username and password. \rSpecify feeder's URL."
-            createInfoLabel.text = "Create username and password. \rFor feeder's url, type:\r\"feeder.local:5000\"."
+            createInfoLabel.text = "Create username and password. \r\rDefault URL:\r\"feeder.local:5000\""
+            urlTextField.text = "feeder.local:5000"
         }
         
         // Change state for settings edit
@@ -90,7 +92,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             urlTextField.text = myLogin!.url
             updateName()
             resetButton.hidden = false
-            createInfoLabel.text = "Change username and password. \rFor feeder's url, change to:\r\"feeder.local:5000\""
+            createInfoLabel.text = "Change username and password. \r\rDefault URL:\r\"feeder.local:5000\""
         }
         
         
