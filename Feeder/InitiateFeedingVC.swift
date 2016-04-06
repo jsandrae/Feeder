@@ -5,6 +5,9 @@
 //  Created by Jason Andrae on 3/31/16.
 //  Copyright © 2016 Jason Andrae. All rights reserved.
 //
+//  Code reference:
+//  Ken Toh: https://www.raywenderlich.com/110458/nsurlsession-tutorial-getting-started
+//
 
 import UIKit
 

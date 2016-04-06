@@ -148,8 +148,8 @@ class FeedingLogTableVC: UITableViewController {
     
     // MARK NSCoding
     func saveFeedings(){
-        let isSucessfulSave = NSKeyedArchiver.archiveRootObject(feedings, toFile: FeedingModel.ArchiveURL.path!)
-        if !isSucessfulSave {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(feedings, toFile: FeedingModel.ArchiveURL.path!)
+        if !isSuccessfulSave {
             print("failed to save feedings")
         }
     }

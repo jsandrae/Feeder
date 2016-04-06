@@ -5,6 +5,8 @@
 //  Created by Jason Andrae on 3/21/16.
 //  Copyright © 2016 Jason Andrae. All rights reserved.
 //
+//  Some code heavily modified from Tim Mitra: https://www.raywenderlich.com/92667/securing-ios-data-keychain-touch-id-1password
+//  https://developer.apple.com/library/ios/referencelibrary/GettingStarted/DevelopiOSAppsSwift/Lesson10.html#//apple_ref/doc/uid/TP40015214-CH14-SW1,
 
 import UIKit
 import CoreData
@@ -19,7 +21,7 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
     
     var didReturnFromBackground = false
     
-    // Buttons and Lables
+    // Buttons and Labels
     @IBOutlet weak var usernameLabel: UILabel!
     
     
@@ -36,15 +38,6 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
         
         // Hide view until return from login view
         view.alpha = 0
-        
-        /*
-        let backgroundImage = UIImageView(frame: UIScreen.mainScreen().bounds)
-        backgroundImage.image = UIImage(named: "HungryDog")
-        self.view.insertSubview(backgroundImage, atIndex: 0)
-
-        let bImage = UIImage(named: "HungryDog")
-        let bImageView = UIImageView(image: bImage)
-        self.view.addSubview(bImageView)*/
     }
     
     /**
