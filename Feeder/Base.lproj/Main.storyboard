@@ -46,7 +46,7 @@
                                     <rect key="frame" x="2" y="0.0" width="198" height="65"/>
                                 </variation>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXh-Sy-thn">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXh-Sy-thn">
                                 <rect key="frame" x="75" y="337" width="170" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="RXh-Sy-thn" secondAttribute="height" multiplier="166:61" id="Gsg-Cs-2IC"/>
@@ -107,7 +107,7 @@
                                     <constraint firstAttribute="trailing" secondItem="Ig5-06-uPy" secondAttribute="trailing" id="yGZ-4a-l8U"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in with your username and password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7l-ZG-C12">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Log in with your username and password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7l-ZG-C12">
                                 <rect key="frame" x="46" y="392" width="228" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -116,7 +116,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="202" height="21"/>
                                 </variation>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mbv-Mg-WMw">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mbv-Mg-WMw">
                                 <rect key="frame" x="75" y="613" width="170" height="43"/>
                                 <state key="normal" title="Reset Data" backgroundImage="Button">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -278,7 +278,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V0U-qx-Bpy">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V0U-qx-Bpy">
                                 <rect key="frame" x="75" y="262" width="170" height="43"/>
                                 <state key="normal" title="Feed The Dog!" backgroundImage="Button">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -451,9 +451,6 @@
                                     <segue destination="cjx-ID-NYO" kind="presentation" identifier="gotoFeedingLog" id="U13-6l-7Q8"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" preservesSuperviewLayoutMargins="YES" image="LongingDog" translatesAutoresizingMaskIntoConstraints="NO" id="2QF-CA-6a2">
-                                <rect key="frame" x="-602.5" y="396" width="1525" height="142"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPO-GF-bzd">
                                 <rect key="frame" x="75" y="268" width="170" height="43"/>
                                 <state key="normal" title="Initiate Feeding" backgroundImage="Button">
@@ -466,18 +463,29 @@
                                     <segue destination="cjx-ID-NYO" kind="presentation" identifier="gotoInitiate" modalTransitionStyle="coverVertical" id="XsD-cf-WAQ"/>
                                 </connections>
                             </button>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" preservesSuperviewLayoutMargins="YES" image="LongingDog" translatesAutoresizingMaskIntoConstraints="NO" id="2QF-CA-6a2">
+                                <rect key="frame" x="46" y="396" width="228" height="228"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2QF-CA-6a2" secondAttribute="height" multiplier="1:1" id="gsw-6L-Lgc"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="6De-XV-2wW" appends="YES" id="x1P-WF-OTX"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="sPO-GF-bzd" firstAttribute="centerX" secondItem="MgJ-cC-iZA" secondAttribute="centerX" id="482-JB-Vbj"/>
                             <constraint firstItem="dga-Ps-M6u" firstAttribute="top" secondItem="q5a-36-eX3" secondAttribute="bottom" constant="24" id="54f-iQ-q17"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2QF-CA-6a2" secondAttribute="trailing" constant="30" id="BuU-sY-dd9"/>
                             <constraint firstItem="q5a-36-eX3" firstAttribute="top" secondItem="ak8-Zn-SLE" secondAttribute="bottom" constant="54" id="JWF-mv-zcQ"/>
                             <constraint firstItem="sPO-GF-bzd" firstAttribute="top" secondItem="dga-Ps-M6u" secondAttribute="bottom" constant="18" id="OWA-cD-8eq"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="2QF-CA-6a2" secondAttribute="bottom" constant="30" id="PEI-Rj-GjZ"/>
                             <constraint firstItem="2QF-CA-6a2" firstAttribute="top" secondItem="PEU-34-npx" secondAttribute="bottom" constant="24" id="Slb-fi-9WE"/>
                             <constraint firstItem="q5a-36-eX3" firstAttribute="leading" secondItem="MgJ-cC-iZA" secondAttribute="leadingMargin" constant="30" id="cVY-Yf-Jg9"/>
                             <constraint firstItem="sPO-GF-bzd" firstAttribute="width" secondItem="dga-Ps-M6u" secondAttribute="width" id="dMa-tE-AbK"/>
                             <constraint firstItem="PEU-34-npx" firstAttribute="centerX" secondItem="MgJ-cC-iZA" secondAttribute="centerX" id="dfR-8s-pGZ"/>
+                            <constraint firstItem="2QF-CA-6a2" firstAttribute="leading" secondItem="MgJ-cC-iZA" secondAttribute="leadingMargin" constant="30" id="doi-En-mdn"/>
                             <constraint firstItem="dga-Ps-M6u" firstAttribute="centerX" secondItem="MgJ-cC-iZA" secondAttribute="centerX" id="i9m-0n-TQV"/>
                             <constraint firstItem="2QF-CA-6a2" firstAttribute="centerX" secondItem="MgJ-cC-iZA" secondAttribute="centerX" id="ncq-Hh-wUW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="q5a-36-eX3" secondAttribute="trailing" constant="30" id="scp-Zd-Tge"/>
@@ -504,6 +512,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T6R-zI-ATk" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="6De-XV-2wW">
+                    <connections>
+                        <action selector="photoTapped:" destination="OL8-lr-rh2" id="9ip-uG-jKS"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1609" y="297"/>
         </scene>

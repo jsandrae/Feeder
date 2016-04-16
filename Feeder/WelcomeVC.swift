@@ -11,7 +11,7 @@
 import UIKit
 import CoreData
 
-class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
+class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     // MARK: Properties
     var isAuthenticated = false
@@ -28,6 +28,7 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
     // Objects
     var login: LoginModel?
     var username: String?
+    var dogSavedDogPhoto: UIImage?
     
     // MARK: Loading Navigation
     override func viewDidLoad() {
@@ -61,7 +62,11 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(false)
         self.showLoginView()
-        showMaesy()
+        if let image = dogSavedDogPhoto {
+            dogPhoto.image = image
+        } else {
+            showMaesy()
+        }
     }
 
     /**
@@ -73,7 +78,34 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate {
     }
     
     // MARK: Actions
+    @IBAction func photoTapped(sender: UITapGestureRecognizer) {
+        print("photo tapped")
+        // Programmatically create an image picker controller to allow users to select a photo from their library
+        let imagePickerController = UIImagePickerController()
+        
+        // Allow pictures to only be selected from user's photo library
+        imagePickerController.sourceType = .PhotoLibrary
+        
+        // Designate WelcomeVC to control this view
+        imagePickerController.delegate = self
+        
+        presentViewController(imagePickerController, animated: true, completion: nil)
+    }
     
+    // MARK: UIImagePickerControllerDelegate
+    /**
+     * Function to control the presentation of the photo library selector and saving the new photo
+     */
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        // Use original photo from the photo library
+        let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        // Set the photo image view to the selected image
+        dogSavedDogPhoto = selectedImage
+        
+        // Dismiss the picker
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     
     // MARK: Navigation
 
