@@ -427,7 +427,7 @@
                                     </mask>
                                 </variation>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dga-Ps-M6u">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dga-Ps-M6u">
                                 <rect key="frame" x="75" y="207" width="170" height="43"/>
                                 <state key="normal" title="Schedule Feeding" backgroundImage="Button">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -439,7 +439,7 @@
                                     <segue destination="cjx-ID-NYO" kind="presentation" identifier="gotoSchedule" id="5my-Y5-dEK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEU-34-npx">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEU-34-npx">
                                 <rect key="frame" x="75" y="329" width="170" height="43"/>
                                 <state key="normal" title="Feeding Log" backgroundImage="Button">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -451,7 +451,7 @@
                                     <segue destination="cjx-ID-NYO" kind="presentation" identifier="gotoFeedingLog" id="U13-6l-7Q8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPO-GF-bzd">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPO-GF-bzd">
                                 <rect key="frame" x="75" y="268" width="170" height="43"/>
                                 <state key="normal" title="Initiate Feeding" backgroundImage="Button">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -463,7 +463,7 @@
                                     <segue destination="cjx-ID-NYO" kind="presentation" identifier="gotoInitiate" modalTransitionStyle="coverVertical" id="XsD-cf-WAQ"/>
                                 </connections>
                             </button>
-                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" preservesSuperviewLayoutMargins="YES" image="LongingDog" translatesAutoresizingMaskIntoConstraints="NO" id="2QF-CA-6a2">
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" misplaced="YES" preservesSuperviewLayoutMargins="YES" image="LongingDog" translatesAutoresizingMaskIntoConstraints="NO" id="2QF-CA-6a2">
                                 <rect key="frame" x="46" y="396" width="228" height="228"/>
                                 <gestureRecognizers/>
                                 <constraints>
