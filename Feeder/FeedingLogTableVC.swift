@@ -17,8 +17,8 @@ class FeedingLogTableVC: UITableViewController {
     // MARK: Properties
     var feedings = [FeedingModel]()
     var login: LoginModel?
-    let currentSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
-    var dataTask: NSURLSessionDataTask?
+    let currentSession = URLSession(configuration: URLSessionConfiguration.default)
+    var dataTask: URLSessionDataTask?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class FeedingLogTableVC: UITableViewController {
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         let tabBarVC = self.tabBarController as! FeedingTabBarVC
         login = tabBarVC.tabLogin
         getLog()
@@ -41,23 +41,23 @@ class FeedingLogTableVC: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return feedings.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellIdentifier = "FeedingLogTableCell"
         
         // Downcast cell to created table cell class
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! FeedingLogCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! FeedingLogCell
 
         // Get correct log cell for this index in table
-        let log = feedings[indexPath.row]
+        let log = feedings[(indexPath as NSIndexPath).row]
         
         // Update labels in cell
         cell.date.text = log.date
@@ -67,20 +67,20 @@ class FeedingLogTableVC: UITableViewController {
     }
  
     // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Returning false to prevent users from editing informational table
         return false
     }
 
     // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Returning false to prevent users from explicitly rearranging table
         return false
     }
     
     // MARK: Actions
-    @IBAction func dismissView(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func dismissView(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
 
@@ -97,20 +97,20 @@ class FeedingLogTableVC: UITableViewController {
     // MARK: getLog
     func getLog(){
         // Display network activity monitor to show user process is working
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let urlString:String = "http://"+login!.url + "/log"
         print(urlString)
-        let url = NSURL(string: urlString)
+        let url = URL(string: urlString)
         // Assign data task to this session, pass saved url, perform callback handler
-        dataTask = currentSession.dataTaskWithURL(url!){
+        dataTask = currentSession.dataTask(with: url!, completionHandler: {
             data, response, error in
             // Dismiss network activity monitor once asynchronous response received
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 // if error returned, print error
                 if let receivedError = error {
                     print (receivedError.localizedDescription)
                     self.title = "Network Error"
-                } else if let httpResponse = response as? NSHTTPURLResponse {
+                } else if let httpResponse = response as? HTTPURLResponse {
                     // If received positive response, parse data
                     if httpResponse.statusCode == 200 {
                         self.title = "Feeding Log"
@@ -118,19 +118,19 @@ class FeedingLogTableVC: UITableViewController {
                         self.feedings = feedingLog
                     }
                 }
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 self.tableView.reloadData()
             }
-        }
+        })
         // Since tasks begin in a suspended state, start task
         dataTask?.resume()
     }
     
-    func parseJSON(data:NSData) -> [FeedingModel]{
+    func parseJSON(_ data:Data) -> [FeedingModel]{
         var feedingLog = [FeedingModel]()
         // Parse data and store in dictionary
         do {
-            let json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
             if let entries = json["log"] as? [[String:AnyObject]] {
                 for entry in entries {
                     if let timestamp = entry["timestamp"] as? String {
@@ -155,7 +155,7 @@ class FeedingLogTableVC: UITableViewController {
     }
     
     func loadFeedings() -> [FeedingModel]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(FeedingModel.ArchiveURL.path!) as? [FeedingModel]
+        return NSKeyedUnarchiver.unarchiveObject(withFile: FeedingModel.ArchiveURL.path!) as? [FeedingModel]
     }
 
 }

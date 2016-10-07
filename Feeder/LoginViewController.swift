@@ -55,27 +55,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         }
         
         // Hide reset button for all views but settings
-        resetButton.hidden = true
+        resetButton.isHidden = true
         
         // If logging in
         if isLogin() {
             // Change button attributes
-            loginButton.setTitle("Login", forState: UIControlState.Normal)
+            loginButton.setTitle("Login", for: UIControlState())
             loginButton.tag = loginButtonTag
             // Hide text fields
-            confirmTextField.hidden = true
-            urlTextField.hidden = true
+            confirmTextField.isHidden = true
+            urlTextField.isHidden = true
             // Change label text
             createInfoLabel.text = "Log in with username and password"
             isAuthenticated = true
             updateName()
-            resetButton.hidden = false
+            resetButton.isHidden = false
         } else { // Else, change button to create account, unhide account creation label
             // Change button attributes
-            loginButton.setTitle("Create", forState: UIControlState.Normal)
+            loginButton.setTitle("Create", for: UIControlState())
             loginButton.tag = createLoginButtonTag
             // Change text field return key
-            passTextField.returnKeyType = UIReturnKeyType.Next
+            passTextField.returnKeyType = UIReturnKeyType.next
             // Change label text
             //createInfoLabel.text = "Create username and password. \rSpecify feeder's URL."
             createInfoLabel.text = "Create username and password. \r\rDefault URL:\r\"feeder.local:5000\""
@@ -85,13 +85,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         // Change state for settings edit
         if isSettings() {
             // Hide button, disable save
-            loginButton.setTitle("Update Account", forState: UIControlState.Normal)
-            loginButton.enabled = false
+            loginButton.setTitle("Update Account", for: UIControlState())
+            loginButton.isEnabled = false
             // Change informational text
             createInfoLabel.text = "Edit any field you wish to change."
             urlTextField.text = myLogin!.url
             updateName()
-            resetButton.hidden = false
+            resetButton.isHidden = false
             createInfoLabel.text = "Change username and password. \r\rDefault URL:\r\"feeder.local:5000\""
         }
         
@@ -121,7 +121,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     /**
      * Function for what happens when enter key is used for a given text field
      */
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder();
         
         switch textField {
@@ -147,26 +147,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     /** 
      * Function to perform actions after a text field has ended entry
      */
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         checkValidInputs()
     }
     
     /**
      * Function to disable login button until all text fields have been entered
      */
-    func textFieldDidBeginEditing(textField: UITextField) {
-        loginButton.enabled = false
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        loginButton.isEnabled = false
     }
     
     // MARK: Actions
     
-    @IBAction func userTapped(sender: UITapGestureRecognizer) {
+    @IBAction func userTapped(_ sender: UITapGestureRecognizer) {
         removeAllResponders()
         checkValidInputs()
     }
 
     
-    @IBAction func loginAction(sender: UIButton) {
+    @IBAction func loginAction(_ sender: UIButton) {
         removeAllResponders()
         let isValid = textFieldIsFull(true)
         if isValid {
@@ -174,17 +174,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         }
     }
     
-    @IBAction func resetData(sender: UIButton) {
+    @IBAction func resetData(_ sender: UIButton) {
         // Remove UserDefault data
-        let appDomain = NSBundle.mainBundle().bundleIdentifier!
-        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain)
+        let appDomain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: appDomain)
         // Removed other saved object data
         let filePaths = [LoginModel.ArchiveURL.path!, FeedingModel.ArchiveURL.path!] // Array of all current model objects to allow for easy future additions
         for path in filePaths {
-            let exists = NSFileManager.defaultManager().fileExistsAtPath(path)
+            let exists = FileManager.default.fileExists(atPath: path)
             if exists {
                 do {
-                    try NSFileManager.defaultManager().removeItemAtPath(path)
+                    try FileManager.default.removeItem(atPath: path)
                 }catch let error as NSError {
                     print("error: \(error.localizedDescription)")
                 }
@@ -193,12 +193,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         // Remove Keychain data
         MyKeychainWrapper.mySetObject("", forKey:kSecValueData)
         MyKeychainWrapper.writeToKeychain()
-        performSegueWithIdentifier("resetData", sender: self)
+        performSegue(withIdentifier: "resetData", sender: self)
     }
     
     
-    @IBAction func cancelButton(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancelButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
     func performLogin(){
@@ -212,34 +212,34 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             }
             
             if isSettings() {
-                let alertView = UIAlertController(title: "Update Settings", message: "Updating your settings will destroy all previous settings. \rAre you sure you wish to continue?", preferredStyle: .Alert)
+                let alertView = UIAlertController(title: "Update Settings", message: "Updating your settings will destroy all previous settings. \rAre you sure you wish to continue?", preferredStyle: .alert)
                 
-                let cancelAction = UIAlertAction(title: "Cancel", style: .Destructive, handler: nil)
+                let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
                 alertView.addAction(cancelAction)
-                let updateAction = UIAlertAction(title: "Confirm", style: .Default, handler: confirmHelper)
+                let updateAction = UIAlertAction(title: "Confirm", style: .default, handler: confirmHelper)
                 alertView.addAction(updateAction)
                 
                 // Support display in iPad
                 alertView.popoverPresentationController?.sourceView = self.view
-                alertView.popoverPresentationController?.sourceRect = CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height / 2.0, 1.0, 1.0)
+                alertView.popoverPresentationController?.sourceRect = CGRect(x: self.view.bounds.size.width / 2.0, y: self.view.bounds.size.height / 2.0, width: 1.0, height: 1.0)
                 
                 
-                self.presentViewController(alertView, animated: true, completion: nil)
+                self.present(alertView, animated: true, completion: nil)
             } else {
                 confirmChange()
             }
         } else if isLogin() { // else if login button
             // Compare typed user information to saved password in keychain
             if checkLogin(nameTextField.text!, password: passTextField.text!) {
-                performSegueWithIdentifier("correctLogin", sender: self)
+                performSegue(withIdentifier: "correctLogin", sender: self)
             } else {
                 // Given password doesn't match saved password: clear pass text field and alert user
                 passTextField.text = ""
                 let alertView = UIAlertController(title: "Login Problem",
-                                                  message: "Wrong username or password." as String, preferredStyle:.Alert)
-                let okAction = UIAlertAction(title: "I got this!", style: .Default, handler: nil)
+                                                  message: "Wrong username or password." as String, preferredStyle:.alert)
+                let okAction = UIAlertAction(title: "I got this!", style: .default, handler: nil)
                 alertView.addAction(okAction)
-                self.presentViewController(alertView, animated: true, completion: nil)
+                self.present(alertView, animated: true, completion: nil)
             }
         }
     }
@@ -247,8 +247,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     
     
     // MARK: Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destination = (segue.destinationViewController as! WelcomeVC)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = (segue.destination as! WelcomeVC)
         destination.login = myLogin
         // If we reset the data, remove authentication flag
         if segue.identifier! == "resetData" {
@@ -258,9 +258,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
 
     // MARK: Validation
     // Function to compare username for local login to given, and compare typed password to that saved on keychain
-    func checkLogin(username: String, password: String ) -> Bool {
+    func checkLogin(_ username: String, password: String ) -> Bool {
         // Compare entered username and passwords to keychain user and pass
-        if password == MyKeychainWrapper.myObjectForKey("v_Data") as? String &&
+        if password == MyKeychainWrapper.myObject(forKey: "v_Data") as? String &&
             username == myLogin!.username {
             return true
         } else {
@@ -273,15 +273,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
      * @param Parameter for if text alerts are needed, but is false by default
      * @return Boolean value for if any text field is empty at function call
      */
-    func textFieldIsFull(needAlert: Bool=false) -> Bool {
+    func textFieldIsFull(_ needAlert: Bool=false) -> Bool {
         // if either text field is empty, warn user with alert
         if (nameTextField.text == "" || passTextField.text == "") {
             if needAlert {
                 let alertView = UIAlertController(title: "Input Problem",
-                                                  message: "Username or password fields empty." as String, preferredStyle:.Alert)
-                let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
+                                                  message: "Username or password fields empty." as String, preferredStyle:.alert)
+                let okAction = UIAlertAction(title: "I got this", style: .default, handler: nil)
                 alertView.addAction(okAction)
-                self.presentViewController(alertView, animated: true, completion: nil)
+                self.present(alertView, animated: true, completion: nil)
             }
             return false;
         }
@@ -290,10 +290,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
             if urlTextField.text == "" || confirmTextField.text == "" { // If URL text field is empty
                 if needAlert {
                     let alertView = UIAlertController(title: "Signup Problem",
-                                                      message: "URL Field Empty" as String, preferredStyle:.Alert)
-                    let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
+                                                      message: "URL Field Empty" as String, preferredStyle:.alert)
+                    let okAction = UIAlertAction(title: "I got this", style: .default, handler: nil)
                     alertView.addAction(okAction)
-                    self.presentViewController(alertView, animated: true, completion: nil)
+                    self.present(alertView, animated: true, completion: nil)
                 }
                 return false;
             }
@@ -308,10 +308,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     func invalidTextField() -> Bool {
         if passTextField.text != confirmTextField.text {
             let alertView = UIAlertController(title: "Signup Problem",
-                                              message: "Passwords do not match" as String, preferredStyle:.Alert)
-            let okAction = UIAlertAction(title: "I got this", style: .Default, handler: nil)
+                                              message: "Passwords do not match" as String, preferredStyle:.alert)
+            let okAction = UIAlertAction(title: "I got this", style: .default, handler: nil)
             alertView.addAction(okAction)
-            self.presentViewController(alertView, animated: true, completion: nil)
+            self.present(alertView, animated: true, completion: nil)
             passTextField.text = ""
             confirmTextField.text = ""
             return true
@@ -322,7 +322,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     // Function to disable save button unless all text fields are validly filled
     func checkValidInputs(){
         // If any text field is invalid, disable loginButton
-        loginButton.enabled = textFieldIsFull()
+        loginButton.isEnabled = textFieldIsFull()
     }
     
     // MARK: Helper Methods
@@ -334,11 +334,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     }
     
     func isLogin() -> Bool {
-        return NSUserDefaults.standardUserDefaults().boolForKey("hasAccountKey") && segueID == loginA
+        return UserDefaults.standard.bool(forKey: "hasAccountKey") && segueID == loginA
     }
     
     func isSetup() -> Bool {
-        let test = NSUserDefaults.standardUserDefaults().boolForKey("hasAccountKey")
+        let test = UserDefaults.standard.bool(forKey: "hasAccountKey")
         return !test && segueID == loginA
     }
     
@@ -369,12 +369,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
         MyKeychainWrapper.mySetObject(passTextField.text, forKey:kSecValueData)
         MyKeychainWrapper.writeToKeychain()
         // Change state of login key to true and change button to login for future
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasAccountKey")
-        NSUserDefaults.standardUserDefaults().synchronize()
+        UserDefaults.standard.set(true, forKey: "hasAccountKey")
+        UserDefaults.standard.synchronize()
         //loginButton.tag = loginButtonTag
         
         // Dismiss this view
-        performSegueWithIdentifier("confirmComplete", sender: self)
+        performSegue(withIdentifier: "confirmComplete", sender: self)
     }
     
     // MARK: NSCoding
@@ -386,7 +386,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, UIAlertViewDel
     }
     
     func loadLogin() -> LoginModel? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(LoginModel.ArchiveURL.path!) as? LoginModel
+        return NSKeyedUnarchiver.unarchiveObject(withFile: LoginModel.ArchiveURL.path!) as? LoginModel
     }
 }
 

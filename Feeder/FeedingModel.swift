@@ -18,8 +18,8 @@ class FeedingModel: NSObject, NSCoding {
     var user: String
     
     // MARK: Archiving Path
-    static let Directory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static let ArchiveURL = Directory.URLByAppendingPathComponent("feeding")
+    static let Directory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = Directory.appendingPathComponent("feeding")
     
     // MARK: Key
     struct PropertyKey {
@@ -33,20 +33,20 @@ class FeedingModel: NSObject, NSCoding {
         if let savedDate = date {
             self.date = savedDate
         } else {
-            self.date = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .MediumStyle , timeStyle: .ShortStyle)
+            self.date = DateFormatter.localizedString(from: Date(), dateStyle: .medium , timeStyle: .short)
         }
         super.init()
     }
     
     // MARK: NSCoding
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(user, forKey: PropertyKey.userKey)
-        aCoder.encodeObject(date, forKey: PropertyKey.dateKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(user, forKey: PropertyKey.userKey)
+        aCoder.encode(date, forKey: PropertyKey.dateKey)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
-        let user = aDecoder.decodeObjectForKey(PropertyKey.userKey) as! String
-        if let date = aDecoder.decodeObjectForKey(PropertyKey.dateKey) as? String {
+        let user = aDecoder.decodeObject(forKey: PropertyKey.userKey) as! String
+        if let date = aDecoder.decodeObject(forKey: PropertyKey.dateKey) as? String {
             // Must call other initializer
             self.init(username: user, date: date)
         }

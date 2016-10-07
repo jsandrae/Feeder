@@ -41,7 +41,7 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate, UIImagePi
     /**
      * Function for response to user returning to home screen on phone
      */
-    func appWillResignActive(notification : NSNotification) {
+    func appWillResignActive(_ notification : Notification) {
         view.alpha = 0
         isAuthenticated = false
         didReturnFromBackground = true
@@ -50,7 +50,7 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate, UIImagePi
     /**
      * Function for app regaining focus on phone
      */
-    func appDidBecomeActive(notification : NSNotification) {
+    func appDidBecomeActive(_ notification : Notification) {
         if didReturnFromBackground {
             self.showLoginView()
         }
@@ -59,7 +59,7 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate, UIImagePi
     /**
      * Function for anytime view is displayed
      */
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
         self.showLoginView()
         if let image = dogSavedDogPhoto {
@@ -78,25 +78,25 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate, UIImagePi
     }
     
     // MARK: Actions
-    @IBAction func photoTapped(sender: UITapGestureRecognizer) {
+    @IBAction func photoTapped(_ sender: UITapGestureRecognizer) {
         print("photo tapped")
         // Programmatically create an image picker controller to allow users to select a photo from their library
         let imagePickerController = UIImagePickerController()
         
         // Allow pictures to only be selected from user's photo library
-        imagePickerController.sourceType = .PhotoLibrary
+        imagePickerController.sourceType = .photoLibrary
         
         // Designate WelcomeVC to control this view
         imagePickerController.delegate = self
         
-        presentViewController(imagePickerController, animated: true, completion: nil)
+        present(imagePickerController, animated: true, completion: nil)
     }
     
     // MARK: UIImagePickerControllerDelegate
     /**
      * Function to control the presentation of the photo library selector and saving the new photo
      */
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         // Use original photo from the photo library
         let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         
@@ -104,22 +104,22 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate, UIImagePi
         dogSavedDogPhoto = selectedImage
         
         // Dismiss the picker
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Set variable in destination VC which signifies this segue's identifier
         let segueID = segue.identifier!
         if segueID == "editSettings" {
-            let nav = segue.destinationViewController as! UINavigationController
+            let nav = segue.destination as! UINavigationController
             (nav.topViewController as! LoginViewController).segueID = segueID
         } else if segueID == "gotoLogin" {
-            (segue.destinationViewController as! LoginViewController).segueID = segueID
+            (segue.destination as! LoginViewController).segueID = segueID
         } else { // Go to tab bar
-            let tabBar = segue.destinationViewController as! FeedingTabBarVC
+            let tabBar = segue.destination as! FeedingTabBarVC
             tabBar.tabLogin = login
             if segueID == "gotoInitiate" {
                 let nav = tabBar.viewControllers![1] as! UINavigationController
@@ -131,7 +131,7 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate, UIImagePi
         }
     }
     
-    @IBAction func unwindSegue(segue: UIStoryboardSegue){
+    @IBAction func unwindSegue(_ segue: UIStoryboardSegue){
         if segue.identifier == "resetData"{
             // 
         } else {
@@ -147,7 +147,7 @@ class WelcomeVC: UIViewController, NSFetchedResultsControllerDelegate, UIImagePi
      */
     func showLoginView() {
         if !isAuthenticated {
-            self.performSegueWithIdentifier("gotoLogin", sender: self)
+            self.performSegue(withIdentifier: "gotoLogin", sender: self)
         }
     }
     

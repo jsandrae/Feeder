@@ -30,12 +30,12 @@ class ScheduleTableVC: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 0
     }
@@ -86,8 +86,8 @@ class ScheduleTableVC: UITableViewController {
     */
 
     // MARK: Actions
-    @IBAction func dismissView(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func dismissView(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
     

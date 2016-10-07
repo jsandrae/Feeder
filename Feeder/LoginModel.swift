@@ -17,8 +17,8 @@ class LoginModel: NSObject, NSCoding {
     var url: String
     
     // MARK: Archiving Paths
-    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("login")
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("login")
     
     // MARK: Types
     struct PropertyKey {
@@ -40,14 +40,14 @@ class LoginModel: NSObject, NSCoding {
     }
     
     // MARK: NSCoding
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(username, forKey: PropertyKey.userKey)
-        aCoder.encodeObject(url, forKey: PropertyKey.urlKey)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(username, forKey: PropertyKey.userKey)
+        aCoder.encode(url, forKey: PropertyKey.urlKey)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
-        let username = aDecoder.decodeObjectForKey(PropertyKey.userKey) as! String
-        let url = aDecoder.decodeObjectForKey(PropertyKey.urlKey) as! String
+        let username = aDecoder.decodeObject(forKey: PropertyKey.userKey) as! String
+        let url = aDecoder.decodeObject(forKey: PropertyKey.urlKey) as! String
         
         // Must call other initializer
         self.init(username: username, url:url)

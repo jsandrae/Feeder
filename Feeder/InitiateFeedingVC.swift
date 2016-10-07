@@ -14,9 +14,9 @@ import UIKit
 class InitiateFeedingVC: UIViewController {
     
     // MARK: Properties
-    let currentSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+    let currentSession = URLSession(configuration: URLSessionConfiguration.default)
     var login: LoginModel?
-    var dataTask: NSURLSessionDataTask?
+    var dataTask: URLSessionDataTask?
     
     @IBOutlet weak var feedbackLabel: UILabel!
     @IBOutlet weak var feedingButton: UIButton!
@@ -28,8 +28,8 @@ class InitiateFeedingVC: UIViewController {
     }
     
     // Adding these functions to DidAppear allows view to be reset upon return
-    override func viewDidAppear(animated: Bool) {
-        feedingButton.enabled = true
+    override func viewDidAppear(_ animated: Bool) {
+        feedingButton.isEnabled = true
         feedbackLabel.text = "It's time"
     }
 
@@ -39,41 +39,41 @@ class InitiateFeedingVC: UIViewController {
     }
     
     // MARK: Actions
-    @IBAction func feedButton(sender: UIButton) {
+    @IBAction func feedButton(_ sender: UIButton) {
         // Display network activity monitor to show user process is working
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         self.feedbackLabel.text = "Feeding sent, waiting on response"
-        feedingButton.enabled = false
+        feedingButton.isEnabled = false
         // Concat path and username to given feeder URL
         let urlString:String = "http://"+login!.url + "/feed/" + login!.username
         print(urlString)
-        let url = NSURL(string: urlString)
+        let url = URL(string: urlString)
         // Assign data task to this session, pass saved url, perform callback handler
-        dataTask = currentSession.dataTaskWithURL(url!){
+        dataTask = currentSession.dataTask(with: url!, completionHandler: {
             data, response, error in
             // Dismiss network activity monitor once asynchronous response received
-            dispatch_async(dispatch_get_main_queue()) {
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            DispatchQueue.main.async {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 // if error returned, print error
                 if let receivedError = error {
                     print (receivedError.localizedDescription)
                     self.feedbackLabel.text = "Uh oh, something went wrong. \rTry again in a few minutes."
-                } else if let httpResponse = response as? NSHTTPURLResponse {
+                } else if let httpResponse = response as? HTTPURLResponse {
                     // If received positive response, update label to relay info to user
                     if httpResponse.statusCode == 200 {
                         self.feedbackLabel.text = "Successful feeding. \rMaesy is grateful."
-                        self.feedingButton.enabled = true
-                        self.feedingButton.setTitle("Feed again?", forState: UIControlState.Normal)
+                        self.feedingButton.isEnabled = true
+                        self.feedingButton.setTitle("Feed again?", for: UIControlState())
                     }
                 }
             }
-        }
+        })
         // Since tasks begin in a suspended state, start task
         dataTask?.resume()
     }
     
-    @IBAction func dismissCurrentView(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func dismissCurrentView(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
 
